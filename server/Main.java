@@ -40,10 +40,10 @@ public class Main {
       server.createContext("/put", new PutHandler()); // new file i made to create put requests
       server.createContext("/delete", new DeleteHandler()); // new file i made to create delete requests
 
-      String html = Input.readFile("./index.html");
+      //String html = Input.readFile("./index.html");
 
 
-      server.createContext("/myPage", new RouteHandler(html));
+      //server.createContext("/myPage", new RouteHandler(html)); // the html will no longer be server sided.  to revert this change, make the entire html file into one, combining js and css and put it into this server folder.
 
       //Start the server      
       server.start();
