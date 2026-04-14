@@ -30,8 +30,19 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public  class PostHandler implements HttpHandler {
+        private void addCorsHeaders(HttpExchange exchange) {
+            exchange.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
+            exchange.getResponseHeaders().set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+            exchange.getResponseHeaders().set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+        }
+
         @Override
         public void handle(HttpExchange exchange) throws IOException {
+            addCorsHeaders(exchange);
+            if ("OPTIONS".equals(exchange.getRequestMethod())) {
+                exchange.sendResponseHeaders(204, -1);
+                return;
+            }
             if ("POST".equals(exchange.getRequestMethod())) {
                
                 //Database discord = new Database("jdbc:sqlite:twitter.db");
@@ -74,9 +85,10 @@ public  class PostHandler implements HttpHandler {
 
                 // Send response
                 String response = "Data Received";
-                exchange.sendResponseHeaders(200, response.length());
+                byte[] bytes = response.getBytes(StandardCharsets.UTF_8);
+                exchange.sendResponseHeaders(200, bytes.length);
                 OutputStream os = exchange.getResponseBody();
-                os.write(response.getBytes());
+                os.write(bytes);
                 os.close();
             } else {
                 exchange.sendResponseHeaders(405, -1); // Method Not Allowed
