@@ -38,11 +38,13 @@ public class RouteHandler implements HttpHandler {
         this.contentType = "db";
     }
     public void handle(HttpExchange exchange) {
+
       if(this.contentType.equals("db") ){
           this.response = this.db.runSQL(this.sql,"json");
           System.out.println("Message to be sent: " + this.response);
       }
       try{
+
         send(this.response,exchange);
       }catch(IOException e){
         System.out.println("From Handle: " + e.getMessage());

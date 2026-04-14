@@ -1,9 +1,9 @@
 messageInput = document.getElementById("messageInput");
   editing = false;
   editing_id = "";
-  link = "https://sturdy-system-7vv7qq955gqrfpvwr-8500.app.github.dev"
+  link = "https://humble-space-disco-pjj7vvrw9j5r26v5r-8500.app.github.dev";
 
-  lukasMode = true;
+  lukasMode = false;
 
   if (lukasMode) {
       document.getElementById("messageInput").placeholder = "Lukas Mode is on. No changes will be sent, edited, or deleted."
@@ -38,11 +38,11 @@ messageInput = document.getElementById("messageInput");
           messageInput.value = "";
         }
     });
-
+    htmlCode = ""
   async function getData() { // Function to get messages 
     jsonData = [];
+    lastHTML = htmlCode
     htmlCode = ""
-    lastHTML = document.getElementById("jsonContainer").innerHTML;
     jsonContainer = document.getElementById("jsonContainer");
     try {
       fetch(link + "/")
@@ -77,7 +77,7 @@ messageInput = document.getElementById("messageInput");
       console.log("Html is DIFFERENT. changing.");
       jsonContainer.innerHTML = htmlCode;
 
-      console.log(typeof jsonContainer.innerHTML, typeof htmlCode);
+      console.log(typeof lastHTML, typeof htmlCode);
     }
       });
     } catch {
