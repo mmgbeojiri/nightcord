@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@theme {
+  /* ... */
+}
+
+* {
+  @apply duration-100
+}
+
+#header {
+  @apply bg-slate-50 flex flex-row items-center border-b-2 border-slate-200 h-[10vh] justify-between px-5
+}
+
+#header h1 {
+ @apply text-xl font-bold p-2 text-slate-500 hover:bg-white hover:text-slate-400 rounded
+}
+
+button {
+  @apply bg-blue-400 border-blue-500 border hover:bg-blue-200 px-3 text-white font-bold rounded items-center
+}
+#jsonContainer {
+  @apply flex flex-col-reverse gap-1 overflow-y-scroll scroll-smooth max-h-[80vh] py-3 bg-slate-50
+}
+
+.message {
+  @apply   hover:bg-white rounded flex flex-col p-5 mx-5 
+}
+
+.message h1 {
+  @apply text-xl text-slate-500 font-bold m-0
+}
+.messageContent {
+  @apply flex flex-row gap-1 items-baseline
+}
+.message p {
+  @apply text-slate-800 text-lg
+}
+.message.active {
+  @apply !bg-white
+}
+.editDisclaimer {
+  @apply !text-slate-400 !text-sm items-baseline
+}
+
+.message span {
+  @apply text-sm text-slate-400 
+}
+
+form {
+  @apply flex flex-row mx-auto gap-1 p-5 bg-slate-50 border-t-2 border-slate-100 h-[10vh] 
+}
+
+input {
+   @apply  border-slate-300 text-slate-800 border  rounded p-3 min-w-0
+}
+
+#nameInput {
+  @apply flex-[2]! 
+}
+#messageInput {
+@apply flex-[10]
+}
+
+
+form button {
+  @apply flex-[1]! min-w-0
+}
+
+.messageHeader {
+  @apply  flex flex-row justify-between
+}
+
+.buttonContainer button {
+  @apply bg-slate-300 border-slate-400 text-slate-50 hover:bg-slate-200
+}
+
+#editing {
+  @apply absolute mx-5 text-xs my-1 text-slate-400
+}
+
+
+*/

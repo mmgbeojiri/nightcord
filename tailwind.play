@@ -1,0 +1,119 @@
+<div id="header">
+  <h1>Lets Try To Access the Server.</h1>
+  <button onClick = getData()>Click Here To Fetch Data</button>
+</div>
+<div id="jsonContainer">
+  <div class="message ">
+    <div class="messageHeader">
+      <h1>da big porche</h1>
+      <div class="buttonContainer">
+        <button>edit</button>
+        <button>delete</button>
+      </div>
+    </div>
+
+    <div class="messageContent">
+      <p>dumbass</p>
+      <p class="editDisclaimer">(edited)</p>
+    </div>
+
+    <span>2026-03-24T13:11:53.712996600Z</span>
+  
+  </div>
+
+
+  <div class="message active">
+      <h1>michael</h1>
+      <p> DELETE FROM Tweets</p><span>2026-03-24T13:11:48.=466413200Z</span>
+    </div>
+    <div class="message">
+      <h1>michael</h1>
+      <p>FUCK no.</= p><span>2026-03-24T13:10:47.665826600Z</span>
+    </div>
+    <div class="message">
+      <h1>da big porche</h1>
+      <p>one billion tests to israel</p><span>2026-03-24T13:=
+10:42.067053800Z</span>
+    </div>
+    <div class="message">
+      <h1>da big porche</h1>
+      <= p>Hi guys</p><span>2026-03-24T13:10:16.458227500Z</span>
+    </div>
+    <div class="message">
+      <h1>Michael</h1>
+      <p>i am michael i am gah</p><span>2026-03-12T13:2=
+3:17.726113400Z</span>
+    </div>
+    <div class="message">
+      <h1>Michael</h1>
+      <p>dumbass cant sql inject</p><span>2026-03-12T13:22:06.665449800Z</span>
+    </div>
+    <div class="message">
+      <h1>Lukas</h1>
+      <p> OR 1=1; DROP TABLE Tweets</p><span>2
+026-03-12T13:21:59.098588800Z</span>
+    </div>
+    <div class="message">
+      <h1>Lukas</h1>
+      <p>my name is lukas and i agree</p><span>2026-03-12T13:21:05.820823700Z=
+</span>
+    </div>
+    <div class="message">
+      <h1>Michael</h1>
+      <p>i hate people of color</p><span>2026-03-12T13:20:57.054147400Z</span>
+    </div>
+    <div class="message">
+      <h1>Michael</h1>
+      <p>Bro dont you hate gogaurdian</p><span>2026-03-12T13:2=
+0:42.725728800Z</span>
+    </div>
+    <div class="message">
+      <h1>Trump</h1>
+      <p>the big=
+        t</p><span>2026-03-12T13:18:49.718876200Z</span>
+    </div>
+    <div class="message">
+      <h1>Epstein</h1>
+      <p>this is epstein</p>
+      <span>2026-03-12T13:18:45.62381120=
+0Z</span>
+    </div>
+    <div class="message">
+      <h1>Epstein</h1>
+      <p></p><span>2026-03-=
+12T13:18:34.528468300Z</span>
+    </div>
+    <div class="message">
+      <h1>Trump</h1>
+      <p>=
+        do i see it?</p><span>2026-03-12T13:18:23.493141300Z</span>
+    </div>
+    <div class=="message">
+      <h1>Epstein</h1>
+      <p>do you see this</p><span>2026-03-12T13:18:1=
+8.580755700Z</span>
+    </div>
+    <div class="message">
+      <h1>Michael</h1>
+      <p>skibidi =
+        toilet</p><span>2026-03-12T13:16:58.899077Z</span>
+    </div>
+    <div class="message">
+      <h1>Michael</h1>
+      <p>Oh HELL nah.</p><span>2026-03-12T13:16:51.732461800Z=
+</span>
+    </div>
+    <div class="message">
+      <h1>Elon Musk</h1>
+      <p>Hi guys!</p><span>=
+2026-03-12T13:05:22.992618900Z</span>
+    </div>
+  </div>
+  <div>
+    <h2 id="editing">Editing Message.</h2>
+    <form>
+      <input type="text" id="nameInput" placeholder="Username"></input>
+      <input type="text" id="messageInput" placeholder="Enter your message"></input>
+      <button type="button" onclick="sendData()">Send</button>
+    </form>
+  </div>
