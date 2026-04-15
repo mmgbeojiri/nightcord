@@ -51,12 +51,10 @@ form {
   @apply flex flex-row mx-auto gap-1 p-5 bg-slate-50 border-t-2 border-slate-100 h-[10vh] 
 }
 
-input {
-   @apply  border-slate-300 text-slate-800 border  rounded p-3 min-w-0
+.input {
+   @apply  border-slate-300 text-slate-800 border  rounded p-3 min-w-0 overflow-y-auto leading-[1] inline-block
 }
-textarea {
-  @apply  border-slate-300 text-slate-800 border  rounded p-3 min-w-0 resize-none overflow-y-auto leading-[1] 
-}
+
 #nameInput {
   @apply flex-[2]! 
 }

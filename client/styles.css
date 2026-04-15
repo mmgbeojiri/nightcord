@@ -301,6 +301,7 @@ form {
   padding: calc(var(--spacing) * 5);
 }
 .input {
+  display: inline-block;
   min-width: calc(var(--spacing) * 0);
   overflow-y: auto;
   border-radius: 0.25rem;
@@ -308,7 +309,6 @@ form {
   border-width: 1px;
   border-color: var(--color-slate-300);
   padding: calc(var(--spacing) * 3);
-  vertical-align: baseline;
   --tw-leading: 1;
   line-height: 1;
   color: var(--color-slate-800);
