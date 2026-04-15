@@ -16,6 +16,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URI;
 import java.sql.*;
+import java.nio.charset.StandardCharsets;
 /*
   EP - Feb 7, 2023, 
   Overloading Routehandler to reflect the 
@@ -37,14 +38,28 @@ public class RouteHandler implements HttpHandler {
         this.sql = sql;
         this.contentType = "db";
     }
+    private void addCorsHeaders(HttpExchange exchange) {
+        exchange.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
+        exchange.getResponseHeaders().set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+        exchange.getResponseHeaders().set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    }
+
     public void handle(HttpExchange exchange) {
+      addCorsHeaders(exchange);
+      if ("OPTIONS".equals(exchange.getRequestMethod())) {
+          try {
+              exchange.sendResponseHeaders(204, -1);
+          } catch (IOException e) {
+              System.out.println("From Handle: " + e.getMessage());
+          }
+          return;
+      }
 
       if(this.contentType.equals("db") ){
           this.response = this.db.runSQL(this.sql,"json");
           System.out.println("Message to be sent: " + this.response);
       }
       try{
-
         send(this.response,exchange);
       }catch(IOException e){
         System.out.println("From Handle: " + e.getMessage());
@@ -100,22 +115,18 @@ public class RouteHandler implements HttpHandler {
 		exchange.getResponseHeaders().set("Access-Control-Allow-Origin","*");
 		exchange.getResponseHeaders().set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
 		exchange.getResponseHeaders().set("Access-Control-Allow-Headers", "Content-Type, Authorization");
-		exchange.getResponseHeaders().set("Content-Type", "text/html");
+		exchange.getResponseHeaders().set("Content-Type", "text/html; charset=UTF-8");
     
-    System.out.println(response.length());
-    System.out.println(response.getBytes());
-    System.out.println(response.getBytes().length);
+    byte[] bytes = response == null ? new byte[0] : response.getBytes(StandardCharsets.UTF_8);
+    System.out.println(bytes.length);
     try{
-        exchange.sendResponseHeaders(200, response.getBytes().length);
+        exchange.sendResponseHeaders(200, bytes.length);
         OutputStream os = exchange.getResponseBody();
     
-        os.write(response.getBytes());
+        os.write(bytes);
         os.close();
     }catch(IOException e){
       System.out.println("From Send: " + e.getMessage());
     }
-        
-	}
-
-
+  }
 }
