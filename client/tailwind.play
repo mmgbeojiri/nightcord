@@ -112,8 +112,8 @@
   <div>
     <h2 id="editing">Editing Message.</h2>
     <form>
-      <input type="text" id="nameInput" placeholder="Username"></input>
-      <input type="text" id="messageInput" placeholder="Enter your message"></input>
+      <input type="text" class="input" id="nameInput" placeholder="Username"></input>
+      <div contenteditable="true" class="input" type="text" id="messageInput" placeholder="Enter your message"></textarea>
       <button type="button" onclick="sendData()">Send</button>
     </form>
   </div>

@@ -54,7 +54,9 @@ form {
 input {
    @apply  border-slate-300 text-slate-800 border  rounded p-3 min-w-0
 }
-
+textarea {
+  @apply  border-slate-300 text-slate-800 border  rounded p-3 min-w-0 resize-none overflow-y-auto leading-[1] 
+}
 #nameInput {
   @apply flex-[2]! 
 }
@@ -80,4 +82,3 @@ form button {
 }
 
 
-*/

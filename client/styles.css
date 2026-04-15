@@ -1,3 +1,4 @@
+/*! tailwindcss v4.2.2 | MIT License | https://tailwindcss.com */
 @layer properties;
 @layer theme, base, components, utilities;
 @layer theme {
@@ -299,13 +300,17 @@ form {
   background-color: var(--color-slate-50);
   padding: calc(var(--spacing) * 5);
 }
-input {
+.input {
   min-width: calc(var(--spacing) * 0);
+  overflow-y: auto;
   border-radius: 0.25rem;
   border-style: var(--tw-border-style);
   border-width: 1px;
   border-color: var(--color-slate-300);
   padding: calc(var(--spacing) * 3);
+  vertical-align: baseline;
+  --tw-leading: 1;
+  line-height: 1;
   color: var(--color-slate-800);
 }
 #nameInput {
@@ -354,12 +359,17 @@ form button {
   syntax: "*";
   inherits: false;
 }
+@property --tw-leading {
+  syntax: "*";
+  inherits: false;
+}
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
       --tw-duration: initial;
       --tw-border-style: solid;
       --tw-font-weight: initial;
+      --tw-leading: initial;
     }
   }
 }
