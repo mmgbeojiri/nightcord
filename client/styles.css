@@ -236,6 +236,7 @@ button {
 #jsonContainer {
   display: flex;
   max-height: 80vh;
+  width: 100%;
   flex-direction: column-reverse;
   gap: calc(var(--spacing) * 1);
   overflow-y: scroll;
@@ -345,6 +346,19 @@ form button {
   font-size: var(--text-xs);
   line-height: var(--tw-leading, var(--text-xs--line-height));
   color: var(--color-slate-400);
+}
+#channels {
+  display: none;
+  flex-direction: column;
+  background-color: var(--color-slate-100);
+  padding-inline: calc(var(--spacing) * 3);
+  @media (width >= 64rem) {
+    display: flex;
+  }
+}
+main {
+  display: flex;
+  flex-direction: row;
 }
 @property --tw-duration {
   syntax: "*";

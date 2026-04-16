@@ -2,6 +2,12 @@
   <h1>Lets Try To Access the Server.</h1>
   <button onClick = getData()>Click Here To Fetch Data</button>
 </div>
+<main>
+  <div id="channels">
+    <button>#general</button>
+    <button>#general</button>
+    <button>#general</button>
+    </div>
 <div id="jsonContainer">
   <div class="message ">
     <div class="messageHeader">
@@ -109,11 +115,13 @@
 2026-03-12T13:05:22.992618900Z</span>
     </div>
   </div>
+  </main>
+
   <div>
     <h2 id="editing">Editing Message.</h2>
     <form>
       <input type="text" class="input" id="nameInput" placeholder="Username"></input>
-      <div contenteditable="true" class="input" type="text" id="messageInput" placeholder="Enter your message"></textarea>
+      <input contenteditable="true" class="input" type="text" id="messageInput" placeholder="Enter your message"></input>
       <button type="button" onclick="sendData()">Send</button>
     </form>
   </div>

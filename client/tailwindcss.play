@@ -20,7 +20,7 @@ button {
   @apply bg-blue-400 border-blue-500 border hover:bg-blue-200 px-3 text-white font-bold rounded items-center
 }
 #jsonContainer {
-  @apply flex flex-col-reverse gap-1 overflow-y-scroll scroll-smooth max-h-[80vh] py-3 bg-slate-50
+  @apply flex flex-col-reverse gap-1 overflow-y-scroll scroll-smooth max-h-[80vh] py-3 bg-slate-50 w-full
 }
 
 .message {
@@ -48,7 +48,7 @@ button {
 }
 
 form {
-  @apply flex flex-row mx-auto gap-1 p-5 bg-slate-50 border-t-2 border-slate-100 h-[10vh] 
+  @apply flex flex-row mx-auto gap-1 p-5 bg-slate-50 border-t-2 border-slate-100 h-[10vh]
 }
 
 .input {
@@ -79,4 +79,10 @@ form button {
   @apply absolute mx-5 text-xs my-1 text-slate-400
 }
 
+#channels {
+  @apply hidden lg:flex flex-col px-3 bg-slate-100 
+}
 
+main {
+  @apply flex flex-row
+}
