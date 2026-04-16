@@ -89,9 +89,7 @@ messageInput = document.getElementById("messageInput");
   }
 
   async function sendData() { // Function to send and edit messages
-    if (lukasMode) {
-      return;
-    }
+
     name = document.getElementById("nameInput").value;
     message = document.getElementById("messageInput").value;
     messageInput.value = "";
