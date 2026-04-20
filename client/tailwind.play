@@ -4,7 +4,7 @@
 </div>
 <main>
   <div id="channels">
-    <button>#general</button>
+    <button class="activeButton">#general</button>
     <button>#general</button>
     <button>#general</button>
     </div>

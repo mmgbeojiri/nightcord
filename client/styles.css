@@ -16,6 +16,7 @@
     --color-slate-300: oklch(86.9% 0.022 252.894);
     --color-slate-400: oklch(70.4% 0.04 256.788);
     --color-slate-500: oklch(55.4% 0.046 257.417);
+    --color-slate-600: oklch(44.6% 0.043 257.281);
     --color-slate-800: oklch(27.9% 0.041 260.031);
     --color-white: #fff;
     --spacing: 0.25rem;
@@ -182,6 +183,7 @@
 }
 @layer utilities;
 * {
+  box-sizing: border-box;
   --tw-duration: 100ms;
   transition-duration: 100ms;
 }
@@ -301,6 +303,10 @@ form {
   background-color: var(--color-slate-50);
   padding: calc(var(--spacing) * 5);
 }
+form * {
+  margin-block: auto;
+  height: 2.75rem;
+}
 .input {
   display: inline-block;
   min-width: calc(var(--spacing) * 0);
@@ -350,15 +356,40 @@ form button {
 #channels {
   display: none;
   flex-direction: column;
+  gap: calc(var(--spacing) * 1);
   background-color: var(--color-slate-100);
   padding-inline: calc(var(--spacing) * 3);
+  padding-block: calc(var(--spacing) * 3);
   @media (width >= 64rem) {
     display: flex;
+  }
+}
+#channels button {
+  --tw-border-style: none;
+  border-style: none;
+  background-color: var(--color-slate-100);
+  color: var(--color-slate-300);
+  &:hover {
+    @media (hover: hover) {
+      background-color: var(--color-slate-50);
+    }
+  }
+  &:hover {
+    @media (hover: hover) {
+      color: var(--color-slate-400);
+    }
   }
 }
 main {
   display: flex;
   flex-direction: row;
+}
+#channels .activeButton {
+  border-style: var(--tw-border-style);
+  border-width: 2px;
+  border-color: var(--color-slate-600);
+  background-color: var(--color-slate-50);
+  color: var(--color-slate-500);
 }
 @property --tw-duration {
   syntax: "*";

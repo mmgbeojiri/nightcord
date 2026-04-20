@@ -5,7 +5,7 @@
 }
 
 * {
-  @apply duration-100
+  @apply duration-100 box-border
 }
 
 #header {
@@ -51,6 +51,9 @@ form {
   @apply flex flex-row mx-auto gap-1 p-5 bg-slate-50 border-t-2 border-slate-100 h-[10vh]
 }
 
+form * {
+  @apply h-[2.75rem] my-auto
+}
 .input {
    @apply  border-slate-300 text-slate-800 border  rounded p-3 min-w-0 overflow-y-auto leading-[1] inline-block
 }
@@ -80,9 +83,17 @@ form button {
 }
 
 #channels {
-  @apply hidden lg:flex flex-col px-3 bg-slate-100 
+  @apply hidden lg:flex flex-col px-3 bg-slate-100 py-3 gap-1
+}
+
+#channels button {
+  @apply bg-slate-100 border-none text-slate-300 hover:bg-slate-50 hover:text-slate-400 
 }
 
 main {
   @apply flex flex-row
+}
+
+#channels .activeButton {
+  @apply border-2 border-slate-600 bg-slate-50 text-slate-500
 }
