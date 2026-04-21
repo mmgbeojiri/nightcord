@@ -44,9 +44,7 @@ public  class ChannelHandler implements HttpHandler {
                 exchange.sendResponseHeaders(204, -1);
                 return;
             }
-            if ("GET".equals(exchange.getRequestMethod())) {
-                new RouteHandler(discord, "SELECT * FROM ChannelNames");
-            }
+            
             if ("POST".equals(exchange.getRequestMethod())) {
                
             
@@ -54,32 +52,20 @@ public  class ChannelHandler implements HttpHandler {
                 InputStream is = exchange.getRequestBody();
                 String body = new String(is.readAllBytes(), StandardCharsets.UTF_8);
                 System.out.println("Received: " + body);
-                // {"Name":"Michael","Message":"First POST request on the server.","Timestamp":"3/27/2026, 2:48:46 PM"} 
-                // we need thisinto "('Michael','First POST request on the server.','3/27/2026, 2:48:46 PM')"
+
                 String name = body.split("\"Name\":\"")[1].split("\"")[0];
-                String message = body.split("\"Message\":\"")[1].split("\"")[0];
-                String timestamp = body.split("\"Timestamp\":\"")[1].split("\"")[0];
-                // we need to make a future one to accept id
 
-                //This is SQL injection code at risk, and will only be left in as an example of what not to do.
-                /*String semiSQLString = String.format("('%s','%s','%s')", name, message, timestamp);
-                System.out.println(semiSQLString);
-                String fullSQLString = "INSERT INTO Tweets VALUES " + semiSQLString;
-
-                discord.runSQL(fullSQLString);
-                System.out.println(fullSQLString);
-                System.out.println("successfully inserted into it.");*/
                 
                 
                 try (Connection connection = DriverManager.getConnection("jdbc:sqlite:twitter.db")) {
                     // Connection is established and available for use here
                     
                     // You can now create your PreparedStatement
-                String insert = "INSERT INTO Tweets (Name, Message, Timestamp) VALUES (?, ?, ?);";
-                PreparedStatement ps = connection.prepareStatement(insert);
+                String insert = "INSERT INTO ChannelNames (Name) VALUES (?);"; 
+                String create = "CREATE TABLE ? (Name TEXT,Message TEXT,Timestamp TEXT,Id INTEGER NOT NULL UNIQUE,Edited INTEGER DEFAULT 0,PRIMARY KEY('Id' AUTOINCREMENT));";
+                PreparedStatement ps = connection.prepareStatement(insert + create);
                 ps.setString(1, name);
-                ps.setString(2, message);
-                ps.setString(3, timestamp);
+                ps.setString(2, name);
 
                 ps.executeUpdate();
 
@@ -93,7 +79,8 @@ public  class ChannelHandler implements HttpHandler {
                 exchange.sendResponseHeaders(200, bytes.length);
                 OutputStream os = exchange.getResponseBody();
                 os.write(bytes);
-                os.close();}
+                os.close(); return;
+                }
             if ("PUT".equals(exchange.getRequestMethod())) {
             
                
@@ -102,19 +89,18 @@ public  class ChannelHandler implements HttpHandler {
                 System.out.println("Received: " + body);
 
                 String name = body.split("\"Name\":\"")[1].split("\"")[0];
-                String message = body.split("\"Message\":\"")[1].split("\"")[0];
                 String id = body.split("\"Id\":\"")[1].split("\"")[0];
+
                 // note how we arent taking the timestamp.
                 
                 
                 try (Connection connection = DriverManager.getConnection("jdbc:sqlite:twitter.db")) {
 
-                    String insert = "UPDATE Tweets SET Name = ?, Message = ?, Edited = ? WHERE Id = ?";
+                    String insert = "UPDATE ChannelNames SET Name = ? WHERE Id = ?";
                     PreparedStatement ps = connection.prepareStatement(insert);
                     ps.setString(1, name);
-                    ps.setString(2, message);
-                    ps.setString(3, "1"); // Set Edited to 1 (true)
-                    ps.setString(4, id);
+                    ps.setString(2, id);
+
 
                     ps.executeUpdate();
 
@@ -129,7 +115,7 @@ public  class ChannelHandler implements HttpHandler {
                 OutputStream os = exchange.getResponseBody();
                 os.write(bytes);
                 os.close();
-                }
+                return;}
             if ("DELETE".equals(exchange.getRequestMethod())) {
                
                 InputStream is = exchange.getRequestBody();
@@ -138,15 +124,16 @@ public  class ChannelHandler implements HttpHandler {
 
 
                 // note how we arent taking the timestamp.
+                String name = body.split("\"Name\":\"")[1].split("\"")[0];
                 String id = body.split("\"Id\":\"")[1].split("\"")[0];
                 
                 try (Connection connection = DriverManager.getConnection("jdbc:sqlite:twitter.db")) {
+                    String delete = "DELETE FROM ChannelNames WHERE Id = ?;";
+                    String drop = "Drop TABLE IF EXISTS ?"; // what if theres multiple tables with the same name?
 
-                    String insert = "DELETE FROM Tweets WHERE Id = ?";
-                    // Search up what is a "transaction" and how i can use it to not delete my entire database.
-                    // update: im not doing this because im gay and lazy and i trust myself in writing a single statement
-                    PreparedStatement ps = connection.prepareStatement(insert);
-                    ps.setString(1, id);
+                    PreparedStatement ps = connection.prepareStatement(delete + drop);
+                    ps.setString(1, name);
+                    ps.setString(2, id);
 
                     ps.executeUpdate();
 
@@ -161,9 +148,13 @@ public  class ChannelHandler implements HttpHandler {
                 OutputStream os = exchange.getResponseBody();
                 os.write(bytes);
                 os.close();
-                } else {
-                    exchange.sendResponseHeaders(405, -1);
-                }
+                return;
+                } 
+                
+            exchange.sendResponseHeaders(405, -1);
+                
 
+        
         }
+        
     }

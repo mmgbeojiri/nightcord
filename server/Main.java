@@ -42,6 +42,7 @@ public class Main {
       server.createContext("/put", new PutHandler()); // new file i made to create put requests
       server.createContext("/delete", new DeleteHandler()); // new file i made to create delete requests
 
+      server.createContext("/channelNames", new RouteHandler(discord, "SELECT * FROM ChannelNames"));
       server.createContext("/channels", new ChannelHandler());
 
       
