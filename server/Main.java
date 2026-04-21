@@ -35,10 +35,18 @@ public class Main {
       //create the HTTPserver object
       HttpServer server = HttpServer.create(new InetSocketAddress(port),0);
 
+      /* Message Routes */
+
       server.createContext("/", new RouteHandler(discord, "SELECT * FROM Tweets"));
       server.createContext("/post", new PostHandler()); // new file i made to create post requests
       server.createContext("/put", new PutHandler()); // new file i made to create put requests
       server.createContext("/delete", new DeleteHandler()); // new file i made to create delete requests
+
+      server.createContext("/channels", new ChannelHandler());
+
+      
+
+
 
       //String html = Input.readFile("./index.html");
 
