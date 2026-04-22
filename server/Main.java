@@ -30,7 +30,6 @@ public class Main {
       int port = 8500;
 
       Database discord = new Database("jdbc:sqlite:twitter.db");
-      String content = discord.runSQL("SELECT * FROM Tweets", "json");
       
       //create the HTTPserver object
       HttpServer server = HttpServer.create(new InetSocketAddress(port),0);
@@ -38,6 +37,7 @@ public class Main {
       /* Message Routes */
 
       server.createContext("/", new RouteHandler(discord, "SELECT * FROM Tweets"));
+      server.createContext("/get", new GetHandler()); // new file i made to create get requests
       server.createContext("/post", new PostHandler()); // new file i made to create post requests
       server.createContext("/put", new PutHandler()); // new file i made to create put requests
       server.createContext("/delete", new DeleteHandler()); // new file i made to create delete requests
