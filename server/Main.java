@@ -30,7 +30,7 @@ public class Main {
       int port = 8500;
 
       Database discord = new Database("jdbc:sqlite:twitter.db");
-      
+      // String content = discord.runSQL("SELECT * FROM Tweets", "json");
       //create the HTTPserver object
       HttpServer server = HttpServer.create(new InetSocketAddress(port),0);
 

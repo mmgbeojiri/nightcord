@@ -31,6 +31,7 @@ public class GetHandler implements HttpHandler {
             
             
             String channel = "";
+
             try {
                 InputStream is = exchange.getRequestBody();
                 String body = new String(is.readAllBytes(), StandardCharsets.UTF_8);
@@ -45,14 +46,24 @@ public class GetHandler implements HttpHandler {
             }
             System.out.println("Channel: " + channel);
             String sanitizedChannel = channel.replace("\"", "");
+            sanitizedChannel = sanitizedChannel.replace("-", "");
+
+            Database discord = new Database("jdbc:sqlite:twitter.db");
+
+            String allowedChannels = discord.runSQL("SELECT Name FROM ChannelNames", "json");
+            // allowedchannels is a json object that looks like this: [{"Name":"Tweets"},{"Name":"OtherChannel"}]
+            System.out.println("Allowed Channels: " + allowedChannels);
+
             // cant use prepared statements for table names, so we have to sanitize the input manually.  
             String response = "";
-            Database discord = new Database("jdbc:sqlite:twitter.db");
             
             try (Connection connection = DriverManager.getConnection("jdbc:sqlite:twitter.db")) {
+                if (!allowedChannels.contains("\"Name\":\"" + sanitizedChannel + "\"")) {
+                    throw new Error("Invalid channel name");
+                }
                 
                 String query = "SELECT * FROM " + sanitizedChannel;
-                response = discord.runSQL(discord, query);
+                response = discord.runSQL(query, "json");
                 
             } catch (SQLException e) {
                 e.printStackTrace();
