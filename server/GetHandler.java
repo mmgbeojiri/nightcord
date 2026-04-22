@@ -44,33 +44,15 @@ public class GetHandler implements HttpHandler {
                 //send("Error: Missing Channel parameter", exchange);
             }
             System.out.println("Channel: " + channel);
-            
+            String sanitizedChannel = channel.replace("\"", "");
+            // cant use prepared statements for table names, so we have to sanitize the input manually.  
             String response = "";
+            Database discord = new Database("jdbc:sqlite:twitter.db");
             
             try (Connection connection = DriverManager.getConnection("jdbc:sqlite:twitter.db")) {
                 
-                String query = "SELECT * FROM ?";
-                PreparedStatement ps = connection.prepareStatement(query);
-                ps.setString(1, channel);
-                System.out.println("Executing at channel: " + channel);
-                
-                ResultSet rs = ps.executeQuery();
-                
-                if (rs.next()) {
-                    // Format result as JSON
-                    response = "{\"Id\":\"" + rs.getString("Id") + 
-                              "\",\"Name\":\"" + rs.getString("Name") + 
-                              "\",\"Message\":\"" + rs.getString("Message") + 
-                              "\",\"Timestamp\":\"" + rs.getString("Timestamp") + 
-                              "\",\"Edited\":\"" + rs.getString("Edited") + "\"}";
-
-                    System.out.println("Response: " + response);
-                } else {
-                    exchange.sendResponseHeaders(500, -1);
-                    response = "{\"error\":\"Tweet not found\"}";
-                }
-                
-                rs.close();
+                String query = "SELECT * FROM " + sanitizedChannel;
+                response = discord.runSQL(discord, query);
                 
             } catch (SQLException e) {
                 e.printStackTrace();
