@@ -92,6 +92,13 @@ messageInput = document.getElementById("messageInput");
 
     name = document.getElementById("nameInput").value;
     message = document.getElementById("messageInput").value;
+
+
+    if (name == "" || message == "") {
+      return;
+
+    };
+
     messageInput.value = "";
 
     if (editing) { // PUT REQUEST

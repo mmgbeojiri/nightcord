@@ -361,7 +361,7 @@ form button {
   padding-inline: calc(var(--spacing) * 3);
   padding-block: calc(var(--spacing) * 3);
   @media (width >= 64rem) {
-    display: flex;
+    display: none; /*set to flex if you want to see*/
   }
 }
 #channels button {
