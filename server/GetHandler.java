@@ -11,6 +11,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class GetHandler implements HttpHandler {
+    private String sanitizeString(String input) {
+        return input.replaceAll("[^a-zA-Z0-9]", "");
+    }
     
     private void addCorsHeaders(HttpExchange exchange) {
         exchange.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
@@ -45,8 +48,7 @@ public class GetHandler implements HttpHandler {
                 //send("Error: Missing Channel parameter", exchange);
             }
             System.out.println("Channel: " + channel);
-            String sanitizedChannel = channel.replace("\"", "");
-            sanitizedChannel = sanitizedChannel.replace("-", "");
+            String sanitizedChannel = sanitizeString(channel); //only allow alphanumeric characters to prevent SQL injection.
 
             Database discord = new Database("jdbc:sqlite:twitter.db");
 

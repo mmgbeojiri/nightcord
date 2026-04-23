@@ -24,10 +24,12 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
-import java.sql.Connection; // possibly redundant but you know me ill import the entire library of alexandria if given the choice
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
+// Since PreparedStatements do not work for table names, this entire file is useless.
 
 public  class ChannelHandler implements HttpHandler {
         private void addCorsHeaders(HttpExchange exchange) {
@@ -88,6 +90,7 @@ public  class ChannelHandler implements HttpHandler {
                 String body = new String(is.readAllBytes(), StandardCharsets.UTF_8);
                 System.out.println("Received: " + body);
 
+                String oldName = body.split("\"OldName\":\"")[1].split("\"")[0];
                 String name = body.split("\"Name\":\"")[1].split("\"")[0];
                 String id = body.split("\"Id\":\"")[1].split("\"")[0];
 
@@ -96,10 +99,13 @@ public  class ChannelHandler implements HttpHandler {
                 
                 try (Connection connection = DriverManager.getConnection("jdbc:sqlite:twitter.db")) {
 
-                    String insert = "UPDATE ChannelNames SET Name = ? WHERE Id = ?";
-                    PreparedStatement ps = connection.prepareStatement(insert);
+                    String update = "UPDATE ChannelNames SET Name = ? WHERE Id = ?;";
+                    String alter = "ALTER TABLE ? RENAME TO ?;"; 
+                    PreparedStatement ps = connection.prepareStatement(update);
                     ps.setString(1, name);
                     ps.setString(2, id);
+                    ps.setString(3, oldName);
+                    ps.setString(4, name);
 
 
                     ps.executeUpdate();
