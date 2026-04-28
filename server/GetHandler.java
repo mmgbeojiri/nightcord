@@ -11,10 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class GetHandler implements HttpHandler {
-    private String sanitizeString(String input) {
-        return input.replaceAll("[^a-zA-Z0-9]", "");
-    }
-    
+
     private void addCorsHeaders(HttpExchange exchange) {
         exchange.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
         exchange.getResponseHeaders().set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
@@ -48,24 +45,20 @@ public class GetHandler implements HttpHandler {
                 //send("Error: Missing Channel parameter", exchange);
             }
             System.out.println("Channel: " + channel);
-            String sanitizedChannel = sanitizeString(channel); //only allow alphanumeric characters to prevent SQL injection.
+            
 
             Database discord = new Database("jdbc:sqlite:twitter.db");
 
-            String allowedChannels = discord.runSQL("SELECT Name FROM ChannelNames", "json");
-            // allowedchannels is a json object that looks like this: [{"Name":"Tweets"},{"Name":"OtherChannel"}]
-            System.out.println("Allowed Channels: " + allowedChannels);
 
-            // cant use prepared statements for table names, so we have to sanitize the input manually.  
+
             String response = "";
             
             try (Connection connection = DriverManager.getConnection("jdbc:sqlite:twitter.db")) {
-                if (!allowedChannels.contains("\"Name\":\"" + sanitizedChannel + "\"")) {
-                    throw new Error("Invalid channel name");
-                }
+
                 
-                String query = "SELECT * FROM " + sanitizedChannel;
-                response = discord.runSQL(query, "json");
+                ps = connection.prepareStatement("SELECT * FROM Tweets WHERE Channel = ?");
+                ps.setString(1, channel);
+                ResultSet rs = ps.executeQuery();
                 
             } catch (SQLException e) {
                 e.printStackTrace();
