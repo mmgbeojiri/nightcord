@@ -1,2 +1,2 @@
-javac -cp sqlite-jdbc-3.23.1.jar: Main.java
-java -cp sqlite-jdbc-3.23.1.jar: Main
+javac -cp sqlite-jdbc-3.23.1.jar:jackson-databind-2.17.1.jar:jackson-core-2.17.1.jar:jackson-annotations-2.17.1.jar: Main.java
+java -cp sqlite-jdbc-3.23.1.jar:jackson-databind-2.17.1.jar:jackson-core-2.17.1.jar:jackson-annotations-2.17.1.jar: Main

@@ -8,8 +8,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.*;
 
 public class GetHandler implements HttpHandler {
 
@@ -57,25 +59,28 @@ public class GetHandler implements HttpHandler {
             try (Connection connection = DriverManager.getConnection("jdbc:sqlite:twitter.db")) {
 
                 
-                ps = connection.prepareStatement("SELECT * FROM Tweets WHERE Channel = ?");
+                PreparedStatement ps = connection.prepareStatement("SELECT * FROM Tweets WHERE Channel = ?");
                 ps.setString(1, channel);
                
                 try ( ResultSet rs = ps.executeQuery();) {
-            ResultSetMetaData md = rs.getMetaData();
-            int columns = md.getColumnCount();
-            List<Map<String, Object>> rows = new ArrayList<>();
+                    ResultSetMetaData md = rs.getMetaData();
+                    int columns = md.getColumnCount();
+                    List<Map<String, Object>> rows = new ArrayList<>();
 
-            while (rs.next()) {
-                Map<String, Object> row = new HashMap<>(columns);
-                for (int i = 1; i <= columns; ++i) {
-                    row.put(md.getColumnName(i), rs.getObject(i));
-                }
-                rows.add(row);
+                    while (rs.next()) {
+                        Map<String, Object> row = new HashMap<>(columns);
+                        for (int i = 1; i <= columns; ++i) {
+                            row.put(md.getColumnName(i), rs.getObject(i));
+                        }
+                        rows.add(row);
+                    }
+
+                    // Convert List to JSON string using Jackson
+                    response = new ObjectMapper().writeValueAsString(rows);
+                }   catch (SQLException e) {
+                e.printStackTrace();
+                response = "{\"error\":\"Prepared Statement Error error: " + e.getMessage() + "\"}";
             }
-
-            // Convert List to JSON string using Jackson
-            response = new ObjectMapper().writeValueAsString(rows);
-        }
                 
             } catch (SQLException e) {
                 e.printStackTrace();
