@@ -4,7 +4,7 @@ messageInput = document.getElementById("messageInput");
   link = "https://humble-space-disco-pjj7vvrw9j5r26v5r-8500.app.github.dev";
 
   lukasMode = false;
-
+channel = "Tweets";
   if (lukasMode) {
       document.getElementById("messageInput").placeholder = "Lukas Mode is on. No changes will be sent, edited, or deleted."
     }
@@ -43,9 +43,18 @@ messageInput = document.getElementById("messageInput");
     jsonData = [];
     lastHTML = htmlCode
     htmlCode = ""
+    channelData = {
+      "Channel": channel,
+    }
     jsonContainer = document.getElementById("jsonContainer");
     try {
-      fetch(link + "/")
+      fetch(link + "/get", {
+          method: "GET", // *MUST* be 'PUT' for a PUT request
+          headers: {
+            "Content-Type": "application/json", // Indicates the body format is JSON
+          },
+          body: JSON.stringify(channelData), // Converts the JavaScript object to a JSON string
+        })
       .then(response => response.json())
       .then(data => {
         data.forEach(element => {
