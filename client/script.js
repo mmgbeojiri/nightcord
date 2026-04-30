@@ -96,16 +96,16 @@ currentChannel = "Tweets";
       return
     }
 
-    channelContainer = document.getElementById("channels");
+    channelContainer = document.getElementById("buttonContainer");
 
     try {
       fetch(link + "/channelNames")
       .then(response => response.json())
       .then(data => {
         data.forEach(element => {
-            channelHTMLCode = `
-            <button>#${element.Name}</button>
-            ` +channelHTMLCode;
+            channelHTMLCode += `
+            <button id="channel_${element.Id}" class= ${element.Name == currentChannel ? "activeButton" : ""} >${element.Name}</button>
+            ` 
           
         });
       }).finally(() => {
@@ -188,7 +188,38 @@ currentChannel = "Tweets";
     getData();
     return;
   }
+  async function channelCreate() { // Function to send and edit messages
 
+    nameOfNewChannel = prompt("Enter Channel Name");
+
+
+    if (nameOfNewChannel == "" ) {
+      return;
+
+    };
+
+    // POST REQUEST 
+    data = {
+      "Name": nameOfNewChannel,
+    }
+    console.log("button pressed.");
+     try {
+    const response = await fetch(link + "/channels", {
+      method: "POST", // *MUST* be 'POST' for a POST request
+      headers: {
+        "Content-Type": "application/json", // Indicates the body format is JSON
+      },
+      body: JSON.stringify(data), // Converts the JavaScript object to a JSON string
+    });
+  }  catch (error) {
+    console.error("Error: ", error); // Handles network errors or the error thrown above
+  }
+
+    getData();
+    return;
+  }
+
+  
   async function deleteData(id) { // Function to delete messages
     if (lukasMode) {
       return;
