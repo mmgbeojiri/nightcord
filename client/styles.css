@@ -383,6 +383,7 @@ form button {
 main {
   display: flex;
   flex-direction: row;
+  min-height: 80vh;
 }
 #channels .activeButton {
   border-style: var(--tw-border-style);
