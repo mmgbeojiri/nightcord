@@ -64,10 +64,8 @@ public  class ChannelHandler implements HttpHandler {
                     
                     // You can now create your PreparedStatement
                 String insert = "INSERT INTO ChannelNames (Name) VALUES (?);"; 
-                String create = "CREATE TABLE ? (Name TEXT,Message TEXT,Timestamp TEXT,Id INTEGER NOT NULL UNIQUE,Edited INTEGER DEFAULT 0,PRIMARY KEY('Id' AUTOINCREMENT));";
-                PreparedStatement ps = connection.prepareStatement(insert + create);
+                PreparedStatement ps = connection.prepareStatement(insert); // This adds a new line to the ChannelNames.
                 ps.setString(1, name);
-                ps.setString(2, name);
 
                 ps.executeUpdate();
 
@@ -100,12 +98,10 @@ public  class ChannelHandler implements HttpHandler {
                 try (Connection connection = DriverManager.getConnection("jdbc:sqlite:twitter.db")) {
 
                     String update = "UPDATE ChannelNames SET Name = ? WHERE Id = ?;";
-                    String alter = "ALTER TABLE ? RENAME TO ?;"; 
                     PreparedStatement ps = connection.prepareStatement(update);
                     ps.setString(1, name);
                     ps.setString(2, id);
-                    ps.setString(3, oldName);
-                    ps.setString(4, name);
+
 
 
                     ps.executeUpdate();
@@ -135,11 +131,9 @@ public  class ChannelHandler implements HttpHandler {
                 
                 try (Connection connection = DriverManager.getConnection("jdbc:sqlite:twitter.db")) {
                     String delete = "DELETE FROM ChannelNames WHERE Id = ?;";
-                    String drop = "Drop TABLE IF EXISTS ?"; // what if theres multiple tables with the same name?
 
-                    PreparedStatement ps = connection.prepareStatement(delete + drop);
-                    ps.setString(1, name);
-                    ps.setString(2, id);
+                    PreparedStatement ps = connection.prepareStatement(delete);
+                    ps.setString(1, id);
 
                     ps.executeUpdate();
 

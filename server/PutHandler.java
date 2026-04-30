@@ -52,6 +52,7 @@ public  class PutHandler implements HttpHandler {
                 String name = body.split("\"Name\":\"")[1].split("\"")[0];
                 String message = body.split("\"Message\":\"")[1].split("\"")[0];
                 String id = body.split("\"Id\":\"")[1].split("\"")[0];
+                // note how we arent taking the channel.
                 // note how we arent taking the timestamp.
                 
                 

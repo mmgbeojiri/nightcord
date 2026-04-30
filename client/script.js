@@ -4,7 +4,8 @@ messageInput = document.getElementById("messageInput");
   link = "https://humble-space-disco-pjj7vvrw9j5r26v5r-8500.app.github.dev";
 
   lukasMode = false;
-channel = "Tweets";
+currentChannel = "Tweets";
+
   if (lukasMode) {
       document.getElementById("messageInput").placeholder = "Lukas Mode is on. No changes will be sent, edited, or deleted."
     }
@@ -38,44 +39,44 @@ channel = "Tweets";
           messageInput.value = "";
         }
     });
+    
     htmlCode = ""
+    channelHTMLCode = ""
   async function getData() { // Function to get messages 
     jsonData = [];
     lastHTML = htmlCode
     htmlCode = ""
-    channelData = {
-      "Channel": channel,
-    }
+
+    lastChannelHTML = channelHTMLCode;
+    channelHTMLCode = ""
+
     jsonContainer = document.getElementById("jsonContainer");
+
     try {
-      fetch(link + "/get", {
-          method: "GET", // *MUST* be 'PUT' for a PUT request
-          headers: {
-            "Content-Type": "application/json", // Indicates the body format is JSON
-          },
-          body: JSON.stringify(channelData), // Converts the JavaScript object to a JSON string
-        })
+      fetch(link + "/")
       .then(response => response.json())
       .then(data => {
         data.forEach(element => {
-          htmlCode = `
-          <div class="message" id="${element.Id}">
-            <div class="messageHeader">
-              <h1>${element.Name}</h1>
-              <div class="buttonContainer">
-              <button onclick="populateData('${element.Id}')">edit</button>
-              <button onclick="deleteData('${element.Id}')">delete</button>
+          if (element.Channel == currentChannel){
+            htmlCode = `
+            <div class="message" id="${element.Id}">
+              <div class="messageHeader">
+                <h1>${element.Name}</h1>
+                <div class="buttonContainer">
+                <button onclick="populateData('${element.Id}')">edit</button>
+                <button onclick="deleteData('${element.Id}')">delete</button>
+                </div>
               </div>
-            </div>
-            <div class="messageContent">
-            <p>${element.Message}</p>
-            `
-            + (element.Edited == 1 ? "<p class='editDisclaimer'>(edited)</p>" : "") +
-            `
-            </div>
-            <span>${new Date(element.Timestamp).toLocaleString()}</span>
-            </div>` +htmlCode;
-          jsonData.push(element);
+              <div class="messageContent">
+              <p>${element.Message}</p>
+              `
+              + (element.Edited == 1 ? "<p class='editDisclaimer'>(edited)</p>" : "") +
+              `
+              </div>
+              <span>${new Date(element.Timestamp).toLocaleString()}</span>
+              </div>` +htmlCode;
+            jsonData.push(element);
+          }
         });
       }).finally(() => {
         console.log("Fetch Completed.");
@@ -87,6 +88,35 @@ channel = "Tweets";
       jsonContainer.innerHTML = htmlCode;
 
       console.log(typeof lastHTML, typeof htmlCode);
+    }
+      });
+    } catch {
+      response = "Server Returned 500."
+      console.log("Server Error.")
+      return
+    }
+
+    channelContainer = document.getElementById("channels");
+
+    try {
+      fetch(link + "/channelNames")
+      .then(response => response.json())
+      .then(data => {
+        data.forEach(element => {
+            channelHTMLCode = `
+            <button>#${element.Name}</button>
+            ` +channelHTMLCode;
+          
+        });
+      }).finally(() => {
+        console.log("Fetch Completed.");
+        
+
+
+    if (lastChannelHTML != channelHTMLCode) { // Only update the HTML if it has changed
+      console.log("Html for channels is DIFFERENT. changing.");
+      channelContainer.innerHTML = channelHTMLCode;
+
     }
       });
     } catch {

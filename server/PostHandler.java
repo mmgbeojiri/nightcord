@@ -55,6 +55,7 @@ public  class PostHandler implements HttpHandler {
                 String name = body.split("\"Name\":\"")[1].split("\"")[0];
                 String message = body.split("\"Message\":\"")[1].split("\"")[0];
                 String timestamp = body.split("\"Timestamp\":\"")[1].split("\"")[0];
+                String channel = body.split("\"Channel\":\"")[1].split("\"")[0];
                 // we need to make a future one to accept id
 
                 //This is SQL injection code at risk, and will only be left in as an example of what not to do.
@@ -71,11 +72,12 @@ public  class PostHandler implements HttpHandler {
                     // Connection is established and available for use here
                     
                     // You can now create your PreparedStatement
-                String insert = "INSERT INTO Tweets (Name, Message, Timestamp) VALUES (?, ?, ?);";
+                String insert = "INSERT INTO Tweets (Name, Message, Timestamp, Channel) VALUES (?, ?, ?, ?);";
                 PreparedStatement ps = connection.prepareStatement(insert);
                 ps.setString(1, name);
                 ps.setString(2, message);
                 ps.setString(3, timestamp);
+                ps.setString(4, channel);
 
                 ps.executeUpdate();
 
