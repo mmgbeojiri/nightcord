@@ -104,7 +104,12 @@ currentChannel = "Tweets";
       .then(data => {
         data.forEach(element => {
             channelHTMLCode += `
-            <button id="channel_${element.Id}" class= ${element.Name == currentChannel ? "activeButton" : ""} >${element.Name}</button>
+            <button 
+            id="channel_${element.Id}" 
+            onclick="currentChannel = '${element.Name}'; getData(); console.log('barf')"
+            class=${element.Name == currentChannel ? "activeButton" : ""} >
+            ${element.Name}
+            </button>
             ` 
           
         });
@@ -219,7 +224,7 @@ currentChannel = "Tweets";
     return;
   }
 
-  
+
   async function deleteData(id) { // Function to delete messages
     if (lukasMode) {
       return;
