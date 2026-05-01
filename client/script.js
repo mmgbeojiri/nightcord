@@ -43,7 +43,7 @@ currentChannel = "Tweets";
 
   async function getData() { // Function to get messages 
     jsonData = [];
-    let lastHTML = htmlCode ? htmlCode : ""; // Store the last HTML code to compare for changes
+    let lastHTML = htmlCode || ""; // Store the last HTML code to compare for changes
     let htmlCode = ""
 
     
@@ -100,7 +100,7 @@ currentChannel = "Tweets";
 
   async function getChannelData() {
     
-    let lastChannelHTML = channelHTMLCode ? channelHTMLCode : ""; // Store the last HTML code to compare for changes
+    let lastChannelHTML = channelHTMLCode || ""; // Store the last HTML code to compare for changes
     let channelHTMLCode = ""
     channelContainer = document.getElementById("buttonContainer");
 
