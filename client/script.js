@@ -40,12 +40,11 @@ currentChannel = "Tweets";
         }
     });
     
-    htmlCode = ""
-    channelHTMLCode = ""
+
   async function getData() { // Function to get messages 
     jsonData = [];
-    lastHTML = htmlCode
-    htmlCode = ""
+    let lastHTML = htmlCode ? htmlCode : ""; // Store the last HTML code to compare for changes
+    let htmlCode = ""
 
     
     
@@ -101,8 +100,8 @@ currentChannel = "Tweets";
 
   async function getChannelData() {
     
-    lastChannelHTML = channelHTMLCode;
-    channelHTMLCode = ""
+    let lastChannelHTML = channelHTMLCode ? channelHTMLCode : ""; // Store the last HTML code to compare for changes
+    let channelHTMLCode = ""
     channelContainer = document.getElementById("buttonContainer");
 
     try {
