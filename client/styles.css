@@ -1,4 +1,4 @@
-/*! tailwindcss v4.2.2 | MIT License | https://tailwindcss.com */
+/*! tailwindcss v4.2.4 | MIT License | https://tailwindcss.com */
 @layer properties;
 @layer theme, base, components, utilities;
 @layer theme {
@@ -335,6 +335,24 @@ form button {
   flex-direction: row;
   justify-content: space-between;
 }
+#buttonContainer button {
+  width: 100%;
+  --tw-border-style: none;
+  border-style: none;
+  background-color: var(--color-slate-100);
+  text-align: left;
+  color: var(--color-slate-300);
+  &:hover {
+    @media (hover: hover) {
+      background-color: var(--color-slate-50);
+    }
+  }
+  &:hover {
+    @media (hover: hover) {
+      color: var(--color-slate-400);
+    }
+  }
+}
 .buttonContainer button {
   border-color: var(--color-slate-400);
   background-color: var(--color-slate-300);
@@ -361,29 +379,12 @@ form button {
   padding-inline: calc(var(--spacing) * 3);
   padding-block: calc(var(--spacing) * 3);
   @media (width >= 64rem) {
-    display: flex; /*set to flex if you want to see*/
-  }
-}
-#channels button {
-  --tw-border-style: none;
-  border-style: none;
-  background-color: var(--color-slate-100);
-  color: var(--color-slate-300);
-  &:hover {
-    @media (hover: hover) {
-      background-color: var(--color-slate-50);
-    }
-  }
-  &:hover {
-    @media (hover: hover) {
-      color: var(--color-slate-400);
-    }
+    display: flex;
   }
 }
 main {
   display: flex;
   flex-direction: row;
-  min-height: 80vh;
 }
 #channels .activeButton {
   border-style: var(--tw-border-style);
@@ -391,6 +392,18 @@ main {
   border-color: var(--color-slate-600);
   background-color: var(--color-slate-50);
   color: var(--color-slate-500);
+}
+#channels #createChannel {
+  border-style: var(--tw-border-style);
+  border-width: 1px;
+  border-color: var(--color-slate-500);
+  background-color: var(--color-slate-400);
+  text-align: center;
+  &:hover {
+    @media (hover: hover) {
+      background-color: var(--color-slate-300);
+    }
+  }
 }
 @property --tw-duration {
   syntax: "*";

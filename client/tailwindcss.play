@@ -74,6 +74,11 @@ form button {
   @apply  flex flex-row justify-between
 }
 
+#buttonContainer button {
+  @apply 
+    bg-slate-100  text-slate-300 hover:bg-slate-50 hover:text-slate-400 w-full text-left border-none
+}
+
 .buttonContainer button {
   @apply bg-slate-300 border-slate-400 text-slate-50 hover:bg-slate-200
 }
@@ -85,15 +90,14 @@ form button {
 #channels {
   @apply hidden lg:flex flex-col px-3 bg-slate-100 py-3 gap-1
 }
-
-#channels button {
-  @apply bg-slate-100 border-none text-slate-300 hover:bg-slate-50 hover:text-slate-400 
-}
-
 main {
   @apply flex flex-row
 }
 
 #channels .activeButton {
   @apply border-2 border-slate-600 bg-slate-50 text-slate-500
+}
+
+#channels #createChannel {
+  @apply bg-slate-400 border border-slate-500 border  text-center hover:bg-slate-300
 }
