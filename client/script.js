@@ -47,8 +47,8 @@ currentChannel = "Tweets";
     lastHTML = htmlCode
     htmlCode = ""
 
-    lastChannelHTML = channelHTMLCode;
-    channelHTMLCode = ""
+    
+    
 
     jsonContainer = document.getElementById("jsonContainer");
 
@@ -79,15 +79,15 @@ currentChannel = "Tweets";
           }
         });
       }).finally(() => {
-        console.log("Fetch Completed.");
+        //console.log("Fetch Completed.");
         
 
 
     if (lastHTML != htmlCode) { // Only update the HTML if it has changed
-      console.log("Html is DIFFERENT. changing.");
+     //console.log("Html is DIFFERENT. changing.");
       jsonContainer.innerHTML = htmlCode;
 
-      console.log(typeof lastHTML, typeof htmlCode);
+      //console.log(typeof lastHTML, typeof htmlCode);
     }
       });
     } catch {
@@ -95,7 +95,14 @@ currentChannel = "Tweets";
       console.log("Server Error.")
       return
     }
+    
 
+  }
+
+  async function getChannelData() {
+    
+    lastChannelHTML = channelHTMLCode;
+    channelHTMLCode = ""
     channelContainer = document.getElementById("buttonContainer");
 
     try {
@@ -106,7 +113,7 @@ currentChannel = "Tweets";
             channelHTMLCode += `
             <button 
             id="channel_${element.Id}" 
-            onclick="currentChannel = '${element.Name}'; getData(); console.log('barf')"
+            onclick="currentChannel = '${element.Name}'; getData();"
             class=${element.Name == currentChannel ? "activeButton" : ""} >
             ${element.Name}
             </button>
@@ -114,12 +121,12 @@ currentChannel = "Tweets";
           
         });
       }).finally(() => {
-        console.log("Fetch Completed.");
+        //console.log("Fetch Completed.");
         
 
 
     if (lastChannelHTML != channelHTMLCode) { // Only update the HTML if it has changed
-      console.log("Html for channels is DIFFERENT. changing.");
+      //console.log("Html for channels is DIFFERENT. changing.");
       channelContainer.innerHTML = channelHTMLCode;
 
     }
@@ -129,9 +136,7 @@ currentChannel = "Tweets";
       console.log("Server Error.")
       return
     }
-
   }
-
   async function sendData() { // Function to send and edit messages
 
     name = document.getElementById("nameInput").value;
@@ -175,7 +180,8 @@ currentChannel = "Tweets";
     data = {
       "Name": name,
       "Message": message,
-      "Timestamp": new Date().toISOString()
+      "Timestamp": new Date().toISOString(),
+      "Channel": currentChannel
     }
     console.log("button pressed.");
      try {
@@ -263,7 +269,16 @@ currentChannel = "Tweets";
     toggleEditing(true); // its not a toggle if you specifiy the boolean!
   }
   
-  getData(); // Initial Fetch Of Messages
-  setInterval(getData, 1000); // Auto Fetch New Messages Every Second
+  //getChannelData();
+  //getData(); // Initial Fetch Of Messages
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-  /*if anyone wants to copy the message, this get data function removes their selection every second and is annoying.*/
+const startLoop = async () => {
+  while (true) {
+    getData();
+    getChannelData(); 
+    await delay(1000); // Wait 1 second before the next iteration
+  }
+};
+
+startLoop(); // Start the loop
