@@ -97,11 +97,12 @@ public  class ChannelHandler implements HttpHandler {
                 
                 try (Connection connection = DriverManager.getConnection("jdbc:sqlite:twitter.db")) {
 
-                    String update = "UPDATE ChannelNames SET Name = ? WHERE Id = ?;";
+                    String update = "UPDATE ChannelNames SET Name = ? WHERE Id = ?; UPDATE Tweets SET Channel = ? WHERE Channel = ?;";
                     PreparedStatement ps = connection.prepareStatement(update);
                     ps.setString(1, name);
                     ps.setString(2, id);
-
+                    ps.setString(3, name);
+                    ps.setString(4, oldName);   
 
 
                     ps.executeUpdate();
@@ -126,14 +127,15 @@ public  class ChannelHandler implements HttpHandler {
 
 
                 // note how we arent taking the timestamp.
-                String name = body.split("\"Name\":\"")[1].split("\"")[0];
+                String channel = body.split("\"Channel\":\"")[1].split("\"")[0];
                 String id = body.split("\"Id\":\"")[1].split("\"")[0];
                 
                 try (Connection connection = DriverManager.getConnection("jdbc:sqlite:twitter.db")) {
-                    String delete = "DELETE FROM ChannelNames WHERE Id = ?;";
+                    String delete = "DELETE FROM ChannelNames WHERE Id = ?; DELETE FROM Tweets WHERE Channel = ?;";
 
                     PreparedStatement ps = connection.prepareStatement(delete);
                     ps.setString(1, id);
+                    ps.setString(2, channel);
 
                     ps.executeUpdate();
 

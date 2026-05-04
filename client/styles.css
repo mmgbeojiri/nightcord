@@ -335,7 +335,18 @@ form button {
   flex-direction: row;
   justify-content: space-between;
 }
-#buttonContainer button {
+#buttonContainer div {
+    align-items: center;
+  border-radius: 0.25rem;
+  border-style: var(--tw-border-style);
+  border-width: 1px;
+  border-color: var(--color-blue-500);
+  background-color: var(--color-blue-400);
+  padding-inline: calc(var(--spacing) * 3);
+  --tw-font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-bold);
+
+
   width: 100%;
   --tw-border-style: none;
   border-style: none;
