@@ -39,12 +39,12 @@ currentChannel = "Tweets";
           messageInput.value = "";
         }
     });
-    
+  let htmlCode = "";
 
   async function getData() { // Function to get messages 
     jsonData = [];
-    let lastHTML = htmlCode || ""; // Store the last HTML code to compare for changes
-    let htmlCode = ""
+    let lastHTML = htmlCode; // Store the last HTML code to compare for changes
+    htmlCode = ""
 
     
     
@@ -62,6 +62,7 @@ currentChannel = "Tweets";
               <div class="messageHeader">
                 <h1>${element.Name}</h1>
                 <div class="buttonContainer">
+                <button onclick="copyData('${element.Message}')">copy</button>
                 <button onclick="populateData('${element.Id}')">edit</button>
                 <button onclick="deleteData('${element.Id}')">delete</button>
                 </div>
@@ -97,11 +98,12 @@ currentChannel = "Tweets";
     
 
   }
-
+  let channelHTMLCode = "";
   async function getChannelData() {
     
-    let lastChannelHTML = channelHTMLCode || ""; // Store the last HTML code to compare for changes
-    let channelHTMLCode = ""
+    let lastChannelHTML = channelHTMLCode; // Store the last HTML code to compare for changes
+    channelHTMLCode = ""
+    
     channelContainer = document.getElementById("buttonContainer");
 
     try {
@@ -229,6 +231,9 @@ currentChannel = "Tweets";
     return;
   }
 
+  function copyData(text) {
+    navigator.clipboard.writeText(text);
+  }
 
   async function deleteData(id) { // Function to delete messages
     if (lukasMode) {

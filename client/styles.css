@@ -237,7 +237,7 @@ button {
 }
 #jsonContainer {
   display: flex;
-  max-height: 80vh;
+  height: 80vh;
   width: 100%;
   flex-direction: column-reverse;
   gap: calc(var(--spacing) * 1);
