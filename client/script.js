@@ -117,8 +117,8 @@ async function getChannelData() {
             class=${element.Name == currentChannel ? "activeButton" : ""} >
             <p>${element.Name}<p>
             <div class="channelEditButtons">
-            <button>Edit</button>
-            <button>X</button>
+            <button onclick="event.stopPropagation();">Edit</button>
+            <button onclick="event.stopPropagation();">X</button>
             </div>
             </div>
             `
