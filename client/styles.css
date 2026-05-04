@@ -335,24 +335,22 @@ form button {
   flex-direction: row;
   justify-content: space-between;
 }
-#buttonContainer div {
-    align-items: center;
-  border-radius: 0.25rem;
-  border-style: var(--tw-border-style);
-  border-width: 1px;
-  border-color: var(--color-blue-500);
-  background-color: var(--color-blue-400);
-  padding-inline: calc(var(--spacing) * 3);
-  --tw-font-weight: var(--font-weight-bold);
-  font-weight: var(--font-weight-bold);
-
-
+#buttonContainer > div {
+  display: flex;
   width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0.25rem;
   --tw-border-style: none;
   border-style: none;
   background-color: var(--color-slate-100);
+  padding-inline: calc(var(--spacing) * 3);
   text-align: left;
+  --tw-font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-bold);
   color: var(--color-slate-300);
+  color: var(--color-white);
   &:hover {
     @media (hover: hover) {
       background-color: var(--color-slate-50);
@@ -363,6 +361,12 @@ form button {
       color: var(--color-slate-400);
     }
   }
+}
+#buttonContainer button {
+  margin-block: calc(var(--spacing) * 1);
+  border-color: var(--color-slate-300);
+  background-color: var(--color-slate-50)!important;
+  color: var(--color-slate-500);
 }
 .buttonContainer button {
   border-color: var(--color-slate-400);

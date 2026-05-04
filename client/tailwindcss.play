@@ -74,9 +74,12 @@ form button {
   @apply  flex flex-row justify-between
 }
 
+#buttonContainer > div {
+  @apply px-3 text-white font-bold rounded items-center bg-slate-100  text-slate-300 hover:bg-slate-50 hover:text-slate-400 w-full text-left border-none flex flex-row justify-between 
+}
+
 #buttonContainer button {
-  @apply 
-    bg-slate-100  text-slate-300 hover:bg-slate-50 hover:text-slate-400 w-full text-left border-none
+  @apply !bg-slate-50  text-slate-500 border-slate-300 my-1
 }
 
 .buttonContainer button {

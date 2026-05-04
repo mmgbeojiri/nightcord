@@ -1,24 +1,35 @@
+
 <div id="header">
   <h1>Nightcord</h1>
+  <!-- <button onClick = getData()>Click Here To Fetch Data</button> -->
 </div>
 <main>
 <div id="channels">
   <button id="createChannel" onclick="channelCreate()"> + </button>
   <div id="buttonContainer">
-            <button id="channel_1" onclick="currentChannel = 'Tweets'; getData();" class="activeButton">
-            Tweets
-            </button>
+            <div id="channel_1" onclick="currentChannel = 'Tweets'; getData();" class="activeButton">
+            <p>Tweets</p><p>
+            </p><div class="channelEditButtons">
+            <button>Edit</button>
+            <button>X</button>
+            </div>
+            </div>
             
-            <button id="channel_2" onclick="currentChannel = 'OtherChannel'; getData();" class="">
-            OtherChannel
-            </button>
+            <div id="channel_2" onclick="currentChannel = 'OtherChannel'; getData();" class="">
+            <p>OtherChannel</p><p>
+            </p><div class="channelEditButtons">
+            <button>Edit</button>
+            <button>X</button>
+            </div>
+            </div>
             </div>
 </div>
 <div id="jsonContainer">
-            <div class="message active" id="54">
+            <div class="message" id="54">
               <div class="messageHeader">
                 <h1>Michael</h1>
                 <div class="buttonContainer">
+                <button onclick="copyData('I understand the problem, the server updates the twitter.db and live server detects that.')">copy</button>
                 <button onclick="populateData('54')">edit</button>
                 <button onclick="deleteData('54')">delete</button>
                 </div>
@@ -33,6 +44,7 @@
               <div class="messageHeader">
                 <h1>Michael</h1>
                 <div class="buttonContainer">
+                <button onclick="copyData('My liveserver extension has turned off the updating and editing of files.')">copy</button>
                 <button onclick="populateData('53')">edit</button>
                 <button onclick="deleteData('53')">delete</button>
                 </div>
@@ -47,6 +59,7 @@
               <div class="messageHeader">
                 <h1>Michael</h1>
                 <div class="buttonContainer">
+                <button onclick="copyData('e.preventDefault() is in sendData()')">copy</button>
                 <button onclick="populateData('52')">edit</button>
                 <button onclick="deleteData('52')">delete</button>
                 </div>
@@ -57,38 +70,40 @@
               </div>
               <span>4/16/2026, 9:00:58 AM</span>
               </div>
-            
-            <div class="message" id="2">
+            <div class="message" id="51">
               <div class="messageHeader">
                 <h1>Michael</h1>
                 <div class="buttonContainer">
-                <button onclick="populateData('2')">edit</button>
-                <button onclick="deleteData('2')">delete</button>
+                <button onclick="copyData('how does this send with no message?')">copy</button>
+                <button onclick="populateData('51')">edit</button>
+                <button onclick="deleteData('51')">delete</button>
                 </div>
               </div>
               <div class="messageContent">
-              <p>Oh HELL nah.</p>
-              
+              <p>how does this send with no message?</p>
+              <p class="editDisclaimer">(edited)</p>
               </div>
-              <span>3/12/2026, 9:16:51 AM</span>
+              <span>4/15/2026, 9:23:27 AM</span>
               </div>
-            <div class="message" id="1">
+            <div class="message" id="50">
               <div class="messageHeader">
-                <h1>Elon Musk</h1>
+                <h1>Michael</h1>
                 <div class="buttonContainer">
-                <button onclick="populateData('1')">edit</button>
-                <button onclick="deleteData('1')">delete</button>
+                <button onclick="copyData('rgr')">copy</button>
+                <button onclick="populateData('50')">edit</button>
+                <button onclick="deleteData('50')">delete</button>
                 </div>
               </div>
               <div class="messageContent">
-              <p>Hi guys!</p>
-              
+              <p>rgr</p>
+              <p class="editDisclaimer">(edited)</p>
               </div>
-              <span>3/12/2026, 9:05:22 AM</span>
-              </div></div>
+              <span>4/15/2026, 8:53:05 AM</span>
+              </div>
+            </div>
 </main>
 <div>
-  <h2 id="editing" style="display: block;">Editing Message.</h2>
+  <h2 id="editing" style="display: none;">Editing Message.</h2>
   <form>
     <input class="input" type="text" id="nameInput" placeholder="Username">
     <input class="input" id="messageInput" placeholder="Enter your message" data-placeholder="Enter your message">
@@ -96,5 +111,3 @@
     sendData()">Send</button> 
     </form>
     </div>
-
-
