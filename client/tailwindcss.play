@@ -78,14 +78,16 @@ form button {
   @apply px-3  font-bold rounded items-center bg-slate-100  text-slate-300 hover:bg-slate-50 hover:text-slate-400 w-full text-left border-none flex flex-row justify-between mb-1
 }
 
-#buttonContainer button {
+.channelEditButtons button {
   @apply !bg-slate-50  text-slate-500 border-slate-300 my-1 
 }
 
 #buttonContainer p {
   @apply max-w-[50%] overflow-hidden overflow-ellipsis;
 }
-
+.channelEditButtons {
+  @apply w-[30%] flex justify-center gap-1
+}
 .buttonContainer button {
   @apply bg-slate-300 border-slate-400 text-slate-50 hover:bg-slate-200
 }

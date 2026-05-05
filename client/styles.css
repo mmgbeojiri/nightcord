@@ -362,7 +362,7 @@ form button {
     }
   }
 }
-#buttonContainer button {
+.channelEditButtons button {
   margin-block: calc(var(--spacing) * 1);
   border-color: var(--color-slate-300);
   background-color: var(--color-slate-50)!important;
@@ -372,6 +372,12 @@ form button {
   max-width: 50%;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.channelEditButtons {
+  display: flex;
+  width: 30%;
+  justify-content: center;
+  gap: calc(var(--spacing) * 1);
 }
 .buttonContainer button {
   border-color: var(--color-slate-400);
