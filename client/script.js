@@ -42,7 +42,6 @@ let htmlCode = "";
 
 async function getData() { // Function to get messages 
   jsonData = [];
-  let lastHTML = htmlCode; // Store the last HTML code to compare for changes
   htmlCode = ""
 
 
@@ -82,7 +81,7 @@ async function getData() { // Function to get messages
 
 
 
-        if (lastHTML != htmlCode) { // Only update the HTML if it has changed
+        if (jsonContainer.innerHTML != htmlCode) { // Only update the HTML if it has changed
           //console.log("Html is DIFFERENT. changing.");
           jsonContainer.innerHTML = htmlCode;
 
@@ -100,7 +99,6 @@ async function getData() { // Function to get messages
 let channelHTMLCode = "";
 async function getChannelData() {
 
-  let lastChannelHTML = channelHTMLCode; // Store the last HTML code to compare for changes
   channelHTMLCode = ""
 
   channelContainer = document.getElementById("buttonContainer");
@@ -129,7 +127,7 @@ async function getChannelData() {
 
 
 
-        if (lastChannelHTML != channelHTMLCode) { // Only update the HTML if it has changed
+        if (channelContainer.innerHTML != channelHTMLCode) { // Only update the HTML if it has changed
           //console.log("Html for channels is DIFFERENT. changing.");
           channelContainer.innerHTML = channelHTMLCode;
 
