@@ -75,11 +75,15 @@ form button {
 }
 
 #buttonContainer > div {
-  @apply px-3 text-white font-bold rounded items-center bg-slate-100  text-slate-300 hover:bg-slate-50 hover:text-slate-400 w-full text-left border-none flex flex-row justify-between 
+  @apply px-3  font-bold rounded items-center bg-slate-100  text-slate-300 hover:bg-slate-50 hover:text-slate-400 w-full text-left border-none flex flex-row justify-between mb-1
 }
 
 #buttonContainer button {
-  @apply !bg-slate-50  text-slate-500 border-slate-300 my-1
+  @apply !bg-slate-50  text-slate-500 border-slate-300 my-1 
+}
+
+#buttonContainer p {
+  @apply max-w-[50%] overflow-hidden overflow-ellipsis;
 }
 
 .buttonContainer button {
@@ -91,7 +95,7 @@ form button {
 }
 
 #channels {
-  @apply hidden lg:flex flex-col px-3 bg-slate-100 py-3 gap-1
+  @apply hidden lg:flex  flex-col px-3 bg-slate-100 py-3 gap-1 
 }
 main {
   @apply flex flex-row

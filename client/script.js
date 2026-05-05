@@ -38,8 +38,8 @@ messageInput.addEventListener("keydown", function (event) { // Checks if user pr
     messageInput.value = "";
   }
 });
+const normalize = (str) => str.replace(/\s+/g, '')
 let htmlCode = "";
-
 async function getData() { // Function to get messages 
   jsonData = [];
   htmlCode = ""
@@ -81,7 +81,7 @@ async function getData() { // Function to get messages
 
 
 
-        if (jsonContainer.innerHTML != htmlCode) { // Only update the HTML if it has changed
+        if (normalize(jsonContainer.innerHTML) != normalize(htmlCode)) { // Only update the HTML if it has changed
           //console.log("Html is DIFFERENT. changing.");
           jsonContainer.innerHTML = htmlCode;
 
@@ -98,10 +98,10 @@ async function getData() { // Function to get messages
 }
 let channelHTMLCode = "";
 async function getChannelData() {
-
+  
+  channelContainer = document.getElementById("buttonContainer");
   channelHTMLCode = ""
 
-  channelContainer = document.getElementById("buttonContainer");
 
   try {
     fetch(link + "/channelNames")
@@ -112,8 +112,8 @@ async function getChannelData() {
             <div 
             id="channel_${element.Id}" 
             onclick="currentChannel = '${element.Name}'; getData();"
-            class=${element.Name == currentChannel ? "activeButton" : ""} >
-            <p>${element.Name}<p>
+            class="${element.Name == currentChannel ? "activeButton" : ""}">
+            <p>${element.Name}</p>
             <div class="channelEditButtons">
             <button onclick="event.stopPropagation();">Edit</button>
             <button onclick="event.stopPropagation();">X</button>
@@ -127,8 +127,10 @@ async function getChannelData() {
 
 
 
-        if (channelContainer.innerHTML != channelHTMLCode) { // Only update the HTML if it has changed
-          //console.log("Html for channels is DIFFERENT. changing.");
+        if (normalize(channelContainer.innerHTML) != normalize(channelHTMLCode)) { // Only update the HTML if it has changed
+          //We use a normaizlization function to ignore whitespace
+          console.log("Html for channels is DIFFERENT. changing.");
+
           channelContainer.innerHTML = channelHTMLCode;
 
         }

@@ -336,6 +336,7 @@ form button {
   justify-content: space-between;
 }
 #buttonContainer > div {
+  margin-bottom: calc(var(--spacing) * 1);
   display: flex;
   width: 100%;
   flex-direction: row;
@@ -350,7 +351,6 @@ form button {
   --tw-font-weight: var(--font-weight-bold);
   font-weight: var(--font-weight-bold);
   color: var(--color-slate-300);
-  color: var(--color-white);
   &:hover {
     @media (hover: hover) {
       background-color: var(--color-slate-50);
@@ -367,6 +367,11 @@ form button {
   border-color: var(--color-slate-300);
   background-color: var(--color-slate-50)!important;
   color: var(--color-slate-500);
+}
+#buttonContainer p {
+  max-width: 50%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .buttonContainer button {
   border-color: var(--color-slate-400);
