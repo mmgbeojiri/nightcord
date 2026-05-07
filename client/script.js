@@ -53,7 +53,7 @@ async function getData() { // Function to get messages
   jsonContainer = document.getElementById("jsonContainer");
 
   try {
-    fetch(link + "/")
+    await fetch(link + "/")
       .then(response => response.json())
       .then(data => {
         data.forEach(element => {
@@ -116,7 +116,7 @@ async function getChannelData() {
 
 
   try {
-    fetch(link + "/channelNames")
+    await fetch(link + "/channelNames")
       .then(response => response.json())
       .then(data => {
         data.forEach(element => {
@@ -335,8 +335,8 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 const startLoop = async () => {
   while (true) {
-    getData();
-    getChannelData();
+    await getData();
+    await getChannelData();
     await delay(1000); // Wait 1 second before the next iteration
   }
 };
