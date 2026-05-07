@@ -115,7 +115,7 @@ async function getChannelData() {
             class="${element.Name == currentChannel ? "activeButton" : ""}">
             <p>${element.Name}</p>
             <div class="channelEditButtons">
-            <button onclick="event.stopPropagation();">Edit</button>
+            <button onclick="event.stopPropagation(); channelEdit('${element.Name}', '${element.Id}'); ">Edit</button>
             <button onclick="event.stopPropagation();">X</button>
             </div>
             </div>
@@ -132,8 +132,11 @@ async function getChannelData() {
           console.log("Html for channels is DIFFERENT. changing.");
 
           channelContainer.innerHTML = channelHTMLCode;
+          
 
-        }
+        } 
+        console.log(normalize(channelContainer.innerHTML));
+          console.log(normalize(channelHTMLCode));
       });
   } catch {
     response = "Server Returned 500."
