@@ -115,7 +115,7 @@ async function getChannelData() {
             class="${element.Name == currentChannel ? "activeButton" : ""}">
             <p>${element.Name}</p>
             <div class="channelEditButtons">
-            <button onclick="event.stopPropagation(); channelEdit('${element.Name}', '${element.Id}'); ">Edit</button>
+            <button onclick="event.stopPropagation(); channelEdit('${element.Name}', '${element.Id}');">Edit</button>
             <button onclick="event.stopPropagation();">X</button>
             </div>
             </div>
@@ -135,8 +135,6 @@ async function getChannelData() {
           
 
         } 
-        console.log(normalize(channelContainer.innerHTML));
-          console.log(normalize(channelHTMLCode));
       });
   } catch {
     response = "Server Returned 500."
@@ -248,18 +246,19 @@ async function channelEdit(oldName, id) { // Function to send and edit messages
 
   nameOfNewChannel = prompt(`Rename channel '${oldName}' to:`);
 
-  if (nameOfNewChannel == "") {
+  if (nameOfNewChannel == null || normalize(nameOfNewChannel) == "") {
     return;
 
   };
+
 
   // POST REQUEST 
   data = {
     "Name": nameOfNewChannel,
     "Id": id,
-    "oldName": oldName
+    "OldName": oldName
   }
-  console.log("button pressed.");
+  console.log(data);
   try {
     const response = await fetch(link + "/channels", {
       method: "PUT", // *MUST* be 'POST' for a POST request

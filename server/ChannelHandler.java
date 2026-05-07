@@ -88,9 +88,9 @@ public  class ChannelHandler implements HttpHandler {
                 String body = new String(is.readAllBytes(), StandardCharsets.UTF_8);
                 System.out.println("Received: " + body);
 
-                String oldName = body.split("\"OldName\":\"")[1].split("\"")[0];
                 String name = body.split("\"Name\":\"")[1].split("\"")[0];
                 String id = body.split("\"Id\":\"")[1].split("\"")[0];
+                String oldName = body.split("\"OldName\":\"")[1].split("\"")[0];
 
                 // note how we arent taking the timestamp.
                 
