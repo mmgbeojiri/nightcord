@@ -40,7 +40,10 @@ messageInput.addEventListener("keydown", function (event) { // Checks if user pr
 });
 const normalize = (str) => str.replace(/\s+/g, '')
 let htmlCode = "";
+let jsonData = [];
+
 async function getData() { // Function to get messages 
+  let lastJsonData = jsonData;
   jsonData = [];
   htmlCode = ""
 
@@ -81,12 +84,18 @@ async function getData() { // Function to get messages
 
 
 
-        if (normalize(jsonContainer.innerHTML) != normalize(htmlCode)) { // Only update the HTML if it has changed
+        /*if (normalize(jsonContainer.innerHTML) != normalize(htmlCode)) { // Only update the HTML if it has changed
           //console.log("Html is DIFFERENT. changing.");
           jsonContainer.innerHTML = htmlCode;
 
           //console.log(typeof lastHTML, typeof htmlCode);
+        }*/
+
+        if (JSON.stringify(jsonData) != JSON.stringify(lastJsonData)) { // Only update the HTML if the data has changed
+          console.log("Data is DIFFERENT. changing.");
+          jsonContainer.innerHTML = htmlCode;
         }
+       
       });
   } catch {
     response = "Server Returned 500."
@@ -97,10 +106,13 @@ async function getData() { // Function to get messages
 
 }
 let channelHTMLCode = "";
+let channelJsonData = [];
 async function getChannelData() {
   
   channelContainer = document.getElementById("buttonContainer");
   channelHTMLCode = ""
+  let lastChannelJsonData = channelJsonData;
+  channelJsonData = [];
 
 
   try {
@@ -120,16 +132,16 @@ async function getChannelData() {
             </div>
             </div>
             `
-
+            channelJsonData.push(element);
         });
       }).finally(() => {
         //console.log("Fetch Completed.");
 
 
 
-        if (normalize(channelContainer.innerHTML) != normalize(channelHTMLCode)) { // Only update the HTML if it has changed
+        if (JSON.stringify(lastChannelJsonData) != JSON.stringify(channelJsonData)) { // Only update the HTML if it has changed
           //We use a normaizlization function to ignore whitespace
-          console.log("Html for channels is DIFFERENT. changing.");
+          console.log("json for channels is DIFFERENT. changing.");
 
           channelContainer.innerHTML = channelHTMLCode;
           
