@@ -92,6 +92,10 @@ public  class ChannelHandler implements HttpHandler {
                 String id = body.split("\"Id\":\"")[1].split("\"")[0];
                 String oldName = body.split("\"OldName\":\"")[1].split("\"")[0];
 
+                System.out.println("Old Name: " + oldName + " New Name: " + name + " Id: " + id);
+                //Old Name: Unimportant New Name: something else Id: 3
+                
+
                 // note how we arent taking the timestamp.
                 
                 
