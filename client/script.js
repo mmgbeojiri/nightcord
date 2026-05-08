@@ -105,6 +105,7 @@ async function getData() { // Function to get messages
 
 
 }
+
 let channelHTMLCode = "";
 let channelJsonData = [];
 
@@ -124,7 +125,7 @@ async function getChannelData() {
           channelHTMLCode += `
             <div 
             id="channel_${element.Id}" 
-            onclick="currentChannel = '${element.Name}'; getData();"
+            onclick="changeActiveChannel('${element.Name}');"
             class="${element.Name == currentChannel ? "activeButton" : ""}">
             <p>${element.Name}</p>
             <div class="channelEditButtons">
@@ -155,6 +156,19 @@ async function getChannelData() {
     return
   }
 }
+
+function changeActiveChannel(channelName) {
+  currentChannel = channelName;
+  document.querySelectorAll("#buttonContainer > div").forEach(element => { // each element represents a channel button
+    if (element.querySelector("p").innerText.trim() == channelName) {
+      element.classList.add("activeButton");
+    } else {
+      element.classList.remove("activeButton");
+    }
+  });
+  getData();
+};
+
 async function sendData() { // Function to send and edit messages
 
   name = document.getElementById("nameInput").value;
