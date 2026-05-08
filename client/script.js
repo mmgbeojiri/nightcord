@@ -107,6 +107,7 @@ async function getData() { // Function to get messages
 }
 let channelHTMLCode = "";
 let channelJsonData = [];
+
 async function getChannelData() {
   
   channelContainer = document.getElementById("buttonContainer");

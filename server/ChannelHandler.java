@@ -101,15 +101,20 @@ public  class ChannelHandler implements HttpHandler {
                 
                 try (Connection connection = DriverManager.getConnection("jdbc:sqlite:twitter.db")) {
 
-                    String update = "UPDATE ChannelNames SET Name = ? WHERE Id = ?; UPDATE Tweets SET Channel = ? WHERE Channel = ?;";
+                    String update = "UPDATE ChannelNames SET Name = ? WHERE Id = ?;";
+                    String updateTweets = "UPDATE Tweets SET Channel = ? WHERE Channel = ?;";
                     PreparedStatement ps = connection.prepareStatement(update);
                     ps.setString(1, name);
                     ps.setString(2, id);
-                    ps.setString(3, name);
-                    ps.setString(4, oldName);   
-
-
                     ps.executeUpdate();
+                    ps = connection.prepareStatement(updateTweets);
+                    ps.setString(1, name);
+                    ps.setString(2, oldName);   
+                    ps.executeUpdate();
+
+
+
+                    System.out.println("Updated channel name from " + oldName + " to " + name);
 
                 } catch (SQLException e) {
                     e.printStackTrace();
