@@ -59,7 +59,7 @@ async function getData() { // Function to get messages
         data.forEach(element => {
           if (element.Channel == currentChannel) {
             htmlCode = `
-            <div class="message" id="${element.Id}">
+            <div class="message" id="message_${element.Id}">
               <div class="messageHeader">
                 <h1>${element.Name}</h1>
                 <div class="buttonContainer">
@@ -130,7 +130,7 @@ async function getChannelData() {
             <p>${element.Name}</p>
             <div class="channelEditButtons">
             <button onclick="event.stopPropagation(); channelEdit('${element.Name}', '${element.Id}');">Edit</button>
-            <button onclick="event.stopPropagation();">X</button>
+            <button onclick="event.stopPropagation(); channelDelete('${element.Name}', '${element.Id}');">X</button>
             </div>
             </div>
             `
@@ -289,6 +289,32 @@ async function channelEdit(oldName, id) { // Function to send and edit messages
   try {
     const response = await fetch(link + "/channels", {
       method: "PUT", // *MUST* be 'POST' for a POST request
+      headers: {
+        "Content-Type": "application/json", // Indicates the body format is JSON
+      },
+      body: JSON.stringify(data), // Converts the JavaScript object to a JSON string
+    });
+  } catch (error) {
+    console.error("Error: ", error); // Handles network errors or the error thrown above
+  }
+
+  getChannelData();
+  return;
+}
+
+async function channelDelete(name, id) {
+  if (lukasMode) {
+    return;
+  }
+
+  data = {
+    "Id": id,
+    "Name": name,
+  }
+  console.log(data);
+  try {
+    const response = await fetch(link + "/channels", {
+      method: "DELETE", // *MUST* be 'DELETE' for a DELETE request
       headers: {
         "Content-Type": "application/json", // Indicates the body format is JSON
       },
