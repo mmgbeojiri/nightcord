@@ -66,7 +66,7 @@ async function getData() { // Function to get messages
                 <div class="buttonContainer">
                 <button onclick="copyData('${element.Message}')">copy</button>
                 <button onclick="populateData('${element.Id}')">edit</button>
-                <button onclick="deleteData('${element.Id}')">delete</button>
+                <button onclick="deleteData('${element.Id}', '${element.Message}')">delete</button>
                 </div>
               </div>
               <div class="messageContent">
@@ -315,6 +315,10 @@ async function channelDelete(name, id) {
     "Id": id,
     "Name": name,
   }
+  
+  if (confirm(`Are you sure you want to delete this channel: "${name}"?`) == false) {
+    return;
+  }
   console.log(data);
   try {
     const response = await fetch(link + "/channels", {
@@ -336,10 +340,15 @@ function copyData(text) {
   navigator.clipboard.writeText(text);
 }
 
-async function deleteData(id) { // Function to delete messages
+async function deleteData(id, message) { // Function to delete messages
   if (lukasMode) {
     return;
   }
+
+  if (confirm(`Are you sure you want to delete this message: "${message}"?`) == false) {
+    return;
+  }
+
   data = {
     "Id": id,
   }
