@@ -313,7 +313,7 @@ async function channelDelete(name, id) {
 
   data = {
     "Id": id,
-    "Name": name,
+    "Channel": name,
   }
   
   if (confirm(`Are you sure you want to delete this channel: "${name}"?`) == false) {

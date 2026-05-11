@@ -1,4 +1,3 @@
-
 <div id="header">
   <h1>Nightcord</h1>
   <!-- <button onClick = getData()>Click Here To Fetch Data</button> -->
@@ -7,100 +6,85 @@
 <div id="channels">
   <button id="createChannel" onclick="channelCreate()"> + </button>
   <div id="buttonContainer">
-            <div id="channel_1" onclick="currentChannel = 'Tweets'; getData();" class="activeButton">
-            <p>Tweets</p><p>
-            </p><div class="channelEditButtons">
-            <button>Edit</button>
-            <button>X</button>
+            <div id="channel_1" onclick="changeActiveChannel('Tweets');" class="">
+            <p>Tweets</p>
+            <div class="channelEditButtons">
+            <button onclick="event.stopPropagation(); channelEdit('Tweets', '1');">Edit</button>
+            <button onclick="event.stopPropagation(); channelDelete('Tweets', '1');">X</button>
             </div>
             </div>
             
-            <div id="channel_2" onclick="currentChannel = 'OtherChannel'; getData();" class="">
-            <p>OtherChannel</p><p>
-            </p><div class="channelEditButtons">
-            <button>Edit</button>
-            <button>X</button>
+            <div id="channel_2" onclick="changeActiveChannel('OtherChannel');" class="">
+            <p>OtherChannel</p>
+            <div class="channelEditButtons">
+            <button onclick="event.stopPropagation(); channelEdit('OtherChannel', '2');">Edit</button>
+            <button onclick="event.stopPropagation(); channelDelete('OtherChannel', '2');">X</button>
+            </div>
+            </div>
+            
+            <div id="channel_3" onclick="changeActiveChannel('SomethingElse');" class="">
+            <p>SomethingElse</p>
+            <div class="channelEditButtons">
+            <button onclick="event.stopPropagation(); channelEdit('SomethingElse', '3');">Edit</button>
+            <button onclick="event.stopPropagation(); channelDelete('SomethingElse', '3');">X</button>
+            </div>
+            </div>
+            
+            <div id="channel_4" onclick="changeActiveChannel('InsaneChannel');" class="activeButton">
+            <p>InsaneChannel</p>
+            <div class="channelEditButtons">
+            <button onclick="event.stopPropagation(); channelEdit('InsaneChannel', '4');">Edit</button>
+            <button onclick="event.stopPropagation(); channelDelete('InsaneChannel', '4');">X</button>
             </div>
             </div>
             </div>
 </div>
 <div id="jsonContainer">
-            <div class="message" id="54">
+            <div class="message" id="message_64">
               <div class="messageHeader">
                 <h1>Michael</h1>
                 <div class="buttonContainer">
-                <button onclick="copyData('I understand the problem, the server updates the twitter.db and live server detects that.')">copy</button>
-                <button onclick="populateData('54')">edit</button>
-                <button onclick="deleteData('54')">delete</button>
+                <button onclick="copyData('I support polluting the water!')">copy</button>
+                <button onclick="populateData('64')">edit</button>
+                <button onclick="deleteData('64', 'I support polluting the water!')">delete</button>
                 </div>
               </div>
               <div class="messageContent">
-              <p>I understand the problem, the server updates the twitter.db and live server detects that.</p>
+              <p>I support polluting the water!</p>
               
               </div>
-              <span>4/16/2026, 9:12:20 AM</span>
+              <span>5/11/2026, 8:55:23 AM</span>
               </div>
-            <div class="message" id="53">
+            <div class="message" id="message_62">
               <div class="messageHeader">
                 <h1>Michael</h1>
                 <div class="buttonContainer">
-                <button onclick="copyData('My liveserver extension has turned off the updating and editing of files.')">copy</button>
-                <button onclick="populateData('53')">edit</button>
-                <button onclick="deleteData('53')">delete</button>
+                <button onclick="copyData('I love saying swear words!')">copy</button>
+                <button onclick="populateData('62')">edit</button>
+                <button onclick="deleteData('62', 'I love saying swear words!')">delete</button>
                 </div>
               </div>
               <div class="messageContent">
-              <p>My liveserver extension has turned off the updating and editing of files.</p>
-              <p class="editDisclaimer">(edited)</p>
+              <p>I love saying swear words!</p>
+              
               </div>
-              <span>4/16/2026, 9:09:34 AM</span>
+              <span>5/8/2026, 9:08:18 AM</span>
               </div>
-            <div class="message" id="52">
+            <div class="message" id="message_61">
               <div class="messageHeader">
                 <h1>Michael</h1>
                 <div class="buttonContainer">
-                <button onclick="copyData('e.preventDefault() is in sendData()')">copy</button>
-                <button onclick="populateData('52')">edit</button>
-                <button onclick="deleteData('52')">delete</button>
+                <button onclick="copyData('My social security number is 845-926-2005')">copy</button>
+                <button onclick="populateData('61')">edit</button>
+                <button onclick="deleteData('61', 'My social security number is 845-926-2005')">delete</button>
                 </div>
               </div>
               <div class="messageContent">
-              <p>e.preventDefault() is in sendData()</p>
-              <p class="editDisclaimer">(edited)</p>
+              <p>My social security number is 845-926-2005</p>
+              
               </div>
-              <span>4/16/2026, 9:00:58 AM</span>
-              </div>
-            <div class="message" id="51">
-              <div class="messageHeader">
-                <h1>Michael</h1>
-                <div class="buttonContainer">
-                <button onclick="copyData('how does this send with no message?')">copy</button>
-                <button onclick="populateData('51')">edit</button>
-                <button onclick="deleteData('51')">delete</button>
-                </div>
-              </div>
-              <div class="messageContent">
-              <p>how does this send with no message?</p>
-              <p class="editDisclaimer">(edited)</p>
-              </div>
-              <span>4/15/2026, 9:23:27 AM</span>
-              </div>
-            <div class="message" id="50">
-              <div class="messageHeader">
-                <h1>Michael</h1>
-                <div class="buttonContainer">
-                <button onclick="copyData('rgr')">copy</button>
-                <button onclick="populateData('50')">edit</button>
-                <button onclick="deleteData('50')">delete</button>
-                </div>
-              </div>
-              <div class="messageContent">
-              <p>rgr</p>
-              <p class="editDisclaimer">(edited)</p>
-              </div>
-              <span>4/15/2026, 8:53:05 AM</span>
-              </div>
-            </div>
+              <span>5/8/2026, 9:08:06 AM</span>
+              </div><h1>InsaneChannel</h1></div>
 </main>
 <div>
   <h2 id="editing" style="display: none;">Editing Message.</h2>
@@ -111,3 +95,45 @@
     sendData()">Send</button> 
     </form>
     </div>
+<script src="script.js"></script>
+
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+

@@ -29,9 +29,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-// Since PreparedStatements do not work for table names, this entire file is useless.
 
-public  class ChannelHandler implements HttpHandler {
+public class ChannelHandler implements HttpHandler {
         private void addCorsHeaders(HttpExchange exchange) {
             exchange.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
             exchange.getResponseHeaders().set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
@@ -48,8 +47,6 @@ public  class ChannelHandler implements HttpHandler {
             }
             
             if ("POST".equals(exchange.getRequestMethod())) {
-               
-            
                 // Read input stream
                 InputStream is = exchange.getRequestBody();
                 String body = new String(is.readAllBytes(), StandardCharsets.UTF_8);
@@ -81,9 +78,8 @@ public  class ChannelHandler implements HttpHandler {
                 os.write(bytes);
                 os.close(); return;
                 }
-            if ("PUT".equals(exchange.getRequestMethod())) {
             
-               
+            if ("PUT".equals(exchange.getRequestMethod())) {
                 InputStream is = exchange.getRequestBody();
                 String body = new String(is.readAllBytes(), StandardCharsets.UTF_8);
                 System.out.println("Received: " + body);
@@ -140,13 +136,16 @@ public  class ChannelHandler implements HttpHandler {
                 String id = body.split("\"Id\":\"")[1].split("\"")[0];
                 
                 try (Connection connection = DriverManager.getConnection("jdbc:sqlite:twitter.db")) {
-                    String delete = "DELETE FROM ChannelNames WHERE Id = ?; DELETE FROM Tweets WHERE Channel = ?;";
+                    String deletechannel = "DELETE FROM ChannelNames WHERE Id = ?;";
+                    String deleteTweets = "DELETE FROM Tweets WHERE Channel = ?;";
 
-                    PreparedStatement ps = connection.prepareStatement(delete);
+                    PreparedStatement ps = connection.prepareStatement(deletechannel);
                     ps.setString(1, id);
-                    ps.setString(2, channel);
-
                     ps.executeUpdate();
+                    
+                    ps = connection.prepareStatement(deleteTweets);
+                    ps.setString(1, channel);
+
 
                 } catch (SQLException e) {
                     e.printStackTrace();
