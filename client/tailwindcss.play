@@ -23,6 +23,10 @@ button {
   @apply flex flex-col-reverse gap-1 overflow-y-scroll scroll-smooth h-[80vh] py-3 bg-slate-50 w-full
 }
 
+#jsonContainer > h1 {
+  @apply text-4xl p-5 mx-5 border rounded-xl  border-slate-300 font-bold bg-slate-100 text-slate-500
+}
+
 .message {
   @apply   hover:bg-white rounded flex flex-col p-5 mx-5 
 }
