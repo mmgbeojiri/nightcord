@@ -142,9 +142,10 @@ public class ChannelHandler implements HttpHandler {
                     PreparedStatement ps = connection.prepareStatement(deletechannel);
                     ps.setString(1, id);
                     ps.executeUpdate();
-                    
+
                     ps = connection.prepareStatement(deleteTweets);
                     ps.setString(1, channel);
+                    ps.executeUpdate();
 
 
                 } catch (SQLException e) {

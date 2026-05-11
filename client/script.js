@@ -333,6 +333,9 @@ async function channelDelete(name, id) {
   }
 
   getChannelData();
+  if (currentChannel == name) {
+    changeActiveChannel("Tweets"); // if the user deletes the channel they are in, move them to the default channel.
+  }
   return;
 }
 
