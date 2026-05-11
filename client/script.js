@@ -56,6 +56,7 @@ async function getData() { // Function to get messages
     await fetch(link + "/")
       .then(response => response.json())
       .then(data => {
+        htmlCode = `<h1>${currentChannel}</h1>`;
         data.forEach(element => {
           if (element.Channel == currentChannel) {
             htmlCode = `
@@ -299,6 +300,9 @@ async function channelEdit(oldName, id) { // Function to send and edit messages
   }
 
   getChannelData();
+  if (currentChannel == oldName) {
+    changeActiveChannel(nameOfNewChannel); // if the user renames channel they are in.
+  }
   return;
 }
 
