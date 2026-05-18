@@ -19,6 +19,9 @@
   @apply absolute right-5 z-10 mt-2 w-48 rounded-lg border border-slate-100 bg-white text-left text-sm shadow-lg p-1
 }
 
+#svgButton {
+  @apply text-xl font-bold p-2 text-slate-500 hover:bg-white hover:text-slate-400 rounded-xl active:bg-white
+}
 
 #myDropdown button {
   @apply flex w-full items-center rounded-md px-3 py-2 text-slate-700 hover:bg-slate-100 bg-white border-none font-medium

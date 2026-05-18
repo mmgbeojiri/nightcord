@@ -13,7 +13,7 @@
   <h1>Nightcord</h1>
   <div id="settings">
     <div id="svgButton" onclick="
-    document.getElementById('myDropdown').classList.toggle('hidden'); console.log('clicked');
+    document.getElementById('myDropdown').classList.toggle('hidden'); document.getElementById('svgButton').classList.toggle('active');
     ">
   <svg
   width="30" height="30" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
@@ -23,7 +23,7 @@
   </div>
 
   <div id="myDropdown" class="dropdown-content hidden">
-    <button>Dark Mode: Off</button>
+    <button id="darkModeButton" onclick="toggleDarkMode()">Dark Mode: Off</button>
     <button>Change Server Link</button>
   </div>
   </div>

@@ -4,6 +4,11 @@ editing_id = "";
 link = "https://humble-space-disco-pjj7vvrw9j5r26v5r-8500.app.github.dev";
 lukasMode = false;
 currentChannel = "Tweets";
+darkMode = false;
+function toggleDarkMode() {
+  darkMode = !darkMode;
+  document.getElementById("darkModeButton").innerText = `Dark Mode: ${darkMode ? "On" : "Off"}`;
+}
 
 if (lukasMode) {
   document.getElementById("messageInput").placeholder = "Lukas Mode is on. No changes will be sent, edited, or deleted."
