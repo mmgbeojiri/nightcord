@@ -15,10 +15,24 @@
 #header h1 {
  @apply text-xl font-bold p-2 text-slate-500 hover:bg-white hover:text-slate-400 rounded
 }
+#settings #myDropdown {
+  @apply absolute right-5 z-10 mt-2 w-48 rounded-lg border border-slate-100 bg-white text-left text-sm shadow-lg p-1
+}
+
+
+#myDropdown button {
+  @apply flex w-full items-center rounded-md px-3 py-2 text-slate-700 hover:bg-slate-100 bg-white border-none font-medium
+}
+
+.hidden {
+  @apply hidden;
+}
+
 
 button {
   @apply bg-blue-400 border-blue-500 border hover:bg-blue-200 px-3 text-white font-bold rounded items-center
 }
+
 #jsonContainer {
   @apply flex flex-col-reverse gap-1 overflow-y-scroll scroll-smooth h-[80vh] py-3 bg-slate-50 w-full
 }
