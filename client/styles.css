@@ -288,6 +288,9 @@
     }
   }
 }
+#svgButton.active {
+  background-color: var(--color-white);
+}
 .hidden {
   display: none;
 }
