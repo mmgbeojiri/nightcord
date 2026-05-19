@@ -1,5 +1,5 @@
 @import "tailwindcss";
-
+@custom-variant dark (&:where(.dark, .dark *));
 @theme {
   /* ... */
 }
@@ -9,26 +9,26 @@
 }
 
 #header {
-  @apply bg-slate-50 flex flex-row items-center border-b-2 border-slate-200 h-[10vh] justify-between px-5
+  @apply dark:bg-slate-800 bg-slate-50 flex flex-row items-center border-b-2 border-slate-200 dark:border-slate-700 h-[10vh] justify-between px-5;
 }
 
 #header h1 {
- @apply text-xl font-bold p-2 text-slate-500 hover:bg-white hover:text-slate-400 rounded
+ @apply dark:text-slate-400 dark:hover:bg-slate-900 dark:hover:text-slate-300 text-xl font-bold p-2 text-slate-500 hover:bg-white hover:text-slate-400 rounded-xl;
 }
 #settings #myDropdown {
-  @apply absolute right-5 z-10 mt-2 w-48 rounded-lg border border-slate-100 bg-white text-left text-sm shadow-lg p-1
+  @apply absolute right-5 z-10 mt-2 w-48 rounded-lg border border-slate-100 dark:border-slate-700 bg-white dark:bg-slate-800 text-left text-sm shadow-lg p-1;
 }
 
 #svgButton {
-  @apply text-xl font-bold p-2 text-slate-500 hover:bg-white hover:text-slate-400 rounded-xl active:bg-white
+  @apply text-xl font-bold p-2 text-slate-500 hover:bg-white dark:hover:bg-slate-900 hover:text-slate-400 rounded-xl active:bg-white;
 }
 
 #myDropdown button {
-  @apply flex w-full items-center rounded-md px-3 py-2 text-slate-700 hover:bg-slate-100 bg-white border-none font-medium
+  @apply flex w-full items-center rounded-md px-3 py-2 text-slate-700 hover:bg-slate-100 dark:bg-slate-800 bg-white border-none font-medium dark:hover:bg-slate-700 dark:text-slate-400;
 }
 
 #svgButton.active {
-  @apply bg-white
+  @apply bg-white dark:bg-slate-900;
 }
 
 .hidden {
@@ -37,50 +37,50 @@
 
 
 button {
-  @apply bg-blue-400 border-blue-500 border hover:bg-blue-200 px-3 text-white font-bold rounded items-center
+  @apply bg-blue-400 border-blue-500 dark:bg-slate-800 dark:text-blue-500 border hover:bg-blue-200 dark:hover:bg-blue-900 px-3 text-white font-bold rounded items-center
 }
 
 #jsonContainer {
-  @apply flex flex-col-reverse gap-1 overflow-y-scroll scroll-smooth h-[80vh] py-3 bg-slate-50 w-full
+  @apply flex flex-col-reverse gap-1 overflow-y-scroll scroll-smooth h-[80vh] py-3 bg-slate-50 dark:bg-slate-800 w-full
 }
 
 #jsonContainer > h1 {
-  @apply text-4xl p-5 mx-5 border rounded-xl  border-slate-300 font-bold bg-slate-100 text-slate-500
+  @apply text-4xl p-5 mx-5 border-2 rounded-xl  border-slate-300 font-bold bg-slate-100 text-slate-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-500
 }
 
 .message {
-  @apply   hover:bg-white rounded flex flex-col p-5 mx-5 
+  @apply   hover:bg-white dark:hover:bg-slate-700 rounded-xl flex flex-col p-5 mx-5 
 }
 
 .message h1 {
-  @apply text-xl text-slate-500 font-bold m-0
+  @apply text-xl text-slate-500 dark:text-slate-500 font-bold m-0
 }
 .messageContent {
   @apply flex flex-row gap-1 items-baseline
 }
 .message p {
-  @apply text-slate-800 text-lg
+  @apply text-slate-800 dark:text-slate-400 text-lg
 }
 .message.active {
-  @apply !bg-white
+  @apply !bg-white dark:!bg-slate-700
 }
 .editDisclaimer {
   @apply !text-slate-400 !text-sm items-baseline
 }
 
 .message span {
-  @apply text-sm text-slate-400 
+  @apply text-sm text-slate-400 dark:text-slate-500
 }
 
 form {
-  @apply flex flex-row mx-auto gap-1 p-5 bg-slate-50 border-t-2 border-slate-100 h-[10vh]
+  @apply flex flex-row mx-auto gap-1 p-5 bg-slate-50 dark:bg-slate-800 border-t-2 border-slate-100 dark:border-slate-700 h-[10vh]
 }
 
 form * {
   @apply h-[2.75rem] my-auto
 }
 .input {
-   @apply  border-slate-300 text-slate-800 border  rounded p-3 min-w-0 overflow-y-auto leading-[1] inline-block
+   @apply  border-slate-300 dark:border-slate-600 text-slate-800 dark:text-slate-300 border rounded p-3 min-w-0 overflow-y-auto leading-[1] inline-block
 }
 
 #nameInput {
@@ -100,38 +100,38 @@ form button {
 }
 
 #buttonContainer > div {
-  @apply px-3  font-bold rounded items-center bg-slate-100  text-slate-300 hover:bg-slate-50 hover:text-slate-400 w-full text-left border-none flex flex-row justify-between mb-1
+  @apply px-3  font-bold rounded items-center bg-slate-100  text-slate-300 hover:bg-slate-50 hover:text-slate-400 w-full text-left border-none flex flex-row justify-between w-full mb-1 dark:bg-slate-900 dark:text-slate-800 dark:hover:bg-slate-800 dark:hover:text-slate-500
 }
 
 .channelEditButtons button {
-  @apply !bg-slate-50  text-slate-500 border-slate-300 my-1 
+  @apply !bg-slate-50  text-slate-500 border-slate-300 my-1 dark:!bg-slate-900 dark:border-slate-600 ; 
 }
 
 #buttonContainer p {
   @apply max-w-[50%] overflow-hidden overflow-ellipsis;
 }
 .channelEditButtons {
-  @apply w-[30%] flex justify-center gap-1
+  @apply  flex justify-center gap-1
 }
 .buttonContainer button {
-  @apply bg-slate-300 border-slate-400 text-slate-50 hover:bg-slate-200
+  @apply bg-slate-300 border-slate-400 text-slate-50 hover:bg-slate-200 dark:bg-slate-800 dark:border-slate-600
 }
 
 #editing {
-  @apply absolute mx-5 text-xs my-1 text-slate-400
+  @apply absolute mx-5 text-xs my-1 text-slate-400 dark:text-slate-500
 }
 
 #channels {
-  @apply hidden lg:flex  flex-col px-3 bg-slate-100 py-3 gap-1 
+  @apply hidden lg:flex  flex-col px-3 bg-slate-100 dark:bg-slate-900 py-3 gap-1 
 }
 main {
   @apply flex flex-row
 }
 
 #channels .activeButton {
-  @apply border-2 border-slate-600 bg-slate-50 text-slate-500
+  @apply border-2 border-slate-600 bg-slate-50 text-slate-500 dark:bg-slate-700 dark:text-slate-400
 }
 
 #channels #createChannel {
-  @apply bg-slate-400 border border-slate-500 border  text-center hover:bg-slate-300
+  @apply bg-slate-400 border border-slate-500   text-center hover:bg-slate-300 dark:bg-slate-900 dark:border-slate-600 dark:hover:bg-slate-800 dark:text-slate-500
 }
