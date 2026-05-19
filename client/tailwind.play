@@ -68,7 +68,7 @@
               </div>
               <div class="messageContent">
               <p>I support polluting the water!</p>
-              <span>(edited)</span>
+              <p class="editDisclaimer">(edited)</span>
               </div>
               <span>5/11/2026, 8:55:23 AM</span>
               </div>

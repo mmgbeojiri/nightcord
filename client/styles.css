@@ -470,6 +470,9 @@ button {
   font-size: var(--text-sm)!important;
   line-height: var(--tw-leading, var(--text-sm--line-height))!important;
   color: var(--color-slate-400)!important;
+  &:where(.dark, .dark *) {
+    color: var(--color-slate-600)!important;
+  }
 }
 .message span {
   font-size: var(--text-sm);
@@ -618,6 +621,13 @@ form button {
   }
   &:where(.dark, .dark *) {
     background-color: var(--color-slate-800);
+  }
+  &:where(.dark, .dark *) {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-slate-700);
+      }
+    }
   }
 }
 #editing {
