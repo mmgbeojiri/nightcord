@@ -8,6 +8,7 @@ darkMode = false;
 function toggleDarkMode() {
   darkMode = !darkMode;
   document.getElementById("darkModeButton").innerText = `Dark Mode: ${darkMode ? "On" : "Off"}`;
+  document.body.classList.toggle("dark");
 }
 
 if (lukasMode) {
