@@ -57,6 +57,21 @@ messageInput.addEventListener("keydown", function (event) { // Checks if user pr
     messageInput.value = "";
   }
 });
+
+
+const myDropdown = document.getElementById('myDropdown');
+const svgButton = document.getElementById('svgButton');
+document.addEventListener('click', (event) => {
+  // If the click happened OUTSIDE the element
+  if (!myDropdown.contains(event.target) && !svgButton.contains(event.target)) {
+  if (!myDropdown.classList.contains('hidden')) {
+    myDropdown.classList.add('hidden');
+    svgButton.classList.remove('active');
+    console.log("clicking outside dropdown when active");
+  }
+}
+});
+
 const normalize = (str) => str.replace(/\s+/g, '')
 let htmlCode = "";
 let jsonData = [];
