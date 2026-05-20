@@ -1,14 +1,14 @@
-messageInput = document.getElementById("messageInput");
-editing = false;
-editing_id = "";
-link = "https://humble-space-disco-pjj7vvrw9j5r26v5r-8500.app.github.dev";
+const messageInput = document.getElementById("messageInput");
+let editing = false;
+let editing_id = "";
+let link = "https://humble-space-disco-pjj7vvrw9j5r26v5r-8500.app.github.dev";
 
-lukasMode = false;
-currentChannel = "Tweets";
-autoFetch = false; // If this value is false, the service doesnt auto fetch messages. useful for checking console on frontend only days when too many 404 errors.
+const lukasMode = false;
+let currentChannel = "Tweets";
+const autoFetch = true; // If this value is false, the service doesnt auto fetch messages. useful for checking console on frontend only days when too many 404 errors.
 
 let storedDarkMode = window.localStorage.getItem("darkMode");
-darkMode = storedDarkMode === "true";
+let darkMode = storedDarkMode === "true";
 setDarkMode(darkMode);
 
 function setDarkMode(value) {
@@ -98,9 +98,9 @@ async function getData() { // Function to get messages
               <div class="messageHeader">
                 <h1>${element.Name}</h1>
                 <div class="buttonContainer">
-                <button onclick="copyData('${element.Message}')">copy</button>
-                <button onclick="populateData('${element.Id}')">edit</button>
-                <button onclick="deleteData('${element.Id}', '${element.Message}')">delete</button>
+                <button onclick="copyData('${element.Message}')">Copy</button>
+                <button onclick="populateData('${element.Id}')">Edit</button>
+                <button onclick="deleteData('${element.Id}', '${element.Message}')">Delete</button>
                 </div>
               </div>
               <div class="messageContent">
