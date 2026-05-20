@@ -4,11 +4,22 @@ editing_id = "";
 link = "https://humble-space-disco-pjj7vvrw9j5r26v5r-8500.app.github.dev";
 lukasMode = false;
 currentChannel = "Tweets";
-darkMode = false;
-function toggleDarkMode() {
-  darkMode = !darkMode;
+autoFetch = false; // If this value is false, the service doesnt auto fetch messages. useful for checking console on frontend only days when too many 404 errors.
+let storedDarkMode = window.localStorage.getItem("darkMode");
+darkMode = storedDarkMode === "true";
+setDarkMode(darkMode);
+
+function setDarkMode(value) {
+  darkMode = value;
+  window.localStorage.setItem("darkMode", darkMode);
+  console.log(value) 
+
   document.getElementById("darkModeButton").innerText = `Dark Mode: ${darkMode ? "On" : "Off"}`;
-  document.body.classList.toggle("dark");
+  if (value) {
+    document.body.classList.add("dark");
+  } else {
+    document.body.classList.remove("dark");
+  };
 }
 
 if (lukasMode) {
@@ -397,7 +408,7 @@ function populateData(id) { // Function to populate the input fields with the me
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 const startLoop = async () => {
-  while (true) {
+  while (autoFetch) {
     await getData();
     await getChannelData();
     await delay(1000); // Wait 1 second before the next iteration
