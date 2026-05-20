@@ -2,9 +2,11 @@ messageInput = document.getElementById("messageInput");
 editing = false;
 editing_id = "";
 link = "https://humble-space-disco-pjj7vvrw9j5r26v5r-8500.app.github.dev";
+
 lukasMode = false;
 currentChannel = "Tweets";
 autoFetch = false; // If this value is false, the service doesnt auto fetch messages. useful for checking console on frontend only days when too many 404 errors.
+
 let storedDarkMode = window.localStorage.getItem("darkMode");
 darkMode = storedDarkMode === "true";
 setDarkMode(darkMode);
@@ -193,7 +195,7 @@ async function sendData() { // Function to send and edit messages
   message = document.getElementById("messageInput").value;
 
 
-  if (name == "" || message == "") {
+  if (name == "" || normalize(name) == "" || message == "" || normalize(message) == "") {
     return;
 
   };
@@ -257,7 +259,7 @@ async function channelCreate() { // Function to send and edit messages
 
   nameOfNewChannel = prompt("Enter Channel Name");
 
-  if (nameOfNewChannel == "") {
+  if (nameOfNewChannel == "" || normalize(nameOfNewChannel) == "") {
     return;
 
   };
