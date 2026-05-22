@@ -1,15 +1,10 @@
-<!DOCTYPE html>
 <html>
-<head>
-<title>Nightcord</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="styles.css"/>
-</head>
-
-<body>
-<div id="header">
+    <head>
+        <title>Nightcord - About</title>
+    </head>
+    <link rel="stylesheet" href="styles.css"/>
+    <body>
+        <div id="header">
   <h1>Nightcord</h1>
   <div id="settings">
     <div id="svgButton" onclick="
@@ -27,28 +22,36 @@
     <button id="adminModeButton" onclick="setAdminPowers(!adminPowers)">Admin Mode: Off</button>
     <button>Change Server Link</button>
     <button onclick="resetLink()">Reset Server Link</button>
-    <button>About</button>
   </div>
   </div>
   <!-- <button onClick = getData()>Click Here To Fetch Data</button> -->
 </div>
-<main>
-<div id="channels">
-  <button id="createChannel" onclick="channelCreate()"> + </button>
-  <div id="buttonContainer"></div>
-</div>
-<div id="jsonContainer"></div>
-</main>
-<div>
-  <h2 id="editing" style="display: none;">Editing Message.</h2>
-  <form autocomplete="off">
-    <input class="input" type="text" id="nameInput" placeholder="Username"></input>
-    <input class="input" id="messageInput" placeholder="Enter your message" data-placeholder="Enter your message"></input>
-    <button type="button" onclick="
-    sendData()">Send</button> 
-    </form>
-    </div>
-<script src="script.js"></script>
+        <div>
+            <p># Nightcord
+Nightcord is a visualization of a database of a social messaging site where people send messages to the server.
+Nightcord was based off of the CRUD server management and able to support countless features.
+Features include:
 
-</body>
++ Automatic fetching of messages
++ Sending messages to the server
++ Autoincrementing internal ID's in the backend
++ The editing of messages
++ No sign-up: complete anomymity.
++ Creating, Reading, Updating, and Deleting Channels.
++ Copy messages.
++ Responsive Design
++ Security against SQL Injection
++ Dark Mode
++ Permission to edit your own messages
+
+
+
+
+To build, run ``chmod +x ./run_it.sh`` in the ``./server`` directory once, then write ``./run_it.sh`` for every subsequent running.
+The HTML expects the server to be at "https://humble-space-disco-pjj7vvrw9j5r26v5r-8500.app.github.dev", you can edit line 4 of script.js to change whatever is serving your server.
+If you are running this on your own computer, it might be at http://localhost:8500.
+
+</p>
+        </div>
+    </body>
 </html>
