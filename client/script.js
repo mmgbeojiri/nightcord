@@ -7,11 +7,14 @@ const lukasMode = false;
 let currentChannel = "Tweets";
 const autoFetch = true; // If this value is false, the service doesnt auto fetch messages. useful for checking console on frontend only days when too many 404 errors.
 
-let adminPowers = false;
+
 
 let storedDarkMode = window.localStorage.getItem("darkMode");
 let darkMode = storedDarkMode === "true";
 setDarkMode(darkMode);
+
+let storedAdminPowers = window.localStorage.getItem("adminPowers");
+let adminPowers = storedAdminPowers === "true";
 
 function setDarkMode(value) {
   darkMode = value;
@@ -24,6 +27,12 @@ function setDarkMode(value) {
   } else {
     document.body.classList.remove("dark");
   };
+}
+
+function setAdminPowers(value) {
+  adminPowers = value;
+  window.localStorage.setItem("adminPowers", adminPowers);
+  document.getElementById("adminModeButton").innerText = `Admin Mode: ${adminPowers ? "On" : "Off"}`;
 }
 
 if (lukasMode) {
@@ -111,7 +120,7 @@ async function getData() { // Function to get messages
                 <button onclick="copyData('${element.Message}')">Copy</button>
                 `
                 +
-                (element.Name == nameInput.value ? `<button onclick="populateData('${element.Id}')">Edit</button>
+                (element.Name == nameInput.value || adminPowers ? `<button onclick="populateData('${element.Id}')">Edit</button>
                 <button onclick="deleteData('${element.Id}', '${element.Message}')">Delete</button>`: "")
                 +
                 `
@@ -178,10 +187,12 @@ async function getChannelData() {
             onclick="changeActiveChannel('${element.Name}');"
             class="${element.Name == currentChannel ? "activeButton" : ""}">
             <p>${element.Name}</p>
-            <div class="channelEditButtons">
-            <button onclick="event.stopPropagation(); channelEdit('${element.Name}', '${element.Id}');">Edit</button>
-            <button onclick="event.stopPropagation(); channelDelete('${element.Name}', '${element.Id}');">X</button>
-            </div>
+            <div class="channelEditButtons">`
+            +
+            (adminPowers ? `<button onclick="event.stopPropagation(); channelEdit('${element.Name}', '${element.Id}');">Edit</button>
+            <button onclick="event.stopPropagation(); channelDelete('${element.Name}', '${element.Id}');">X</button>` : "")
+            +
+            `</div>
             </div>
             `
             channelJsonData.push(element);

@@ -541,6 +541,7 @@ form button {
 #buttonContainer > div {
   margin-bottom: calc(var(--spacing) * 1);
   display: flex;
+  min-height: calc(var(--spacing) * 9);
   width: 100%;
   flex-direction: row;
   align-items: center;
@@ -598,12 +599,13 @@ form button {
   }
 }
 #buttonContainer p {
-  max-width: 50%;
+  flex: 1;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 .channelEditButtons {
   display: flex;
+  flex: 1;
   justify-content: center;
   gap: calc(var(--spacing) * 1);
 }
@@ -643,6 +645,7 @@ form button {
 }
 #channels {
   display: none;
+  min-width: calc(var(--spacing) * 60);
   flex-direction: column;
   gap: calc(var(--spacing) * 1);
   background-color: var(--color-slate-100);
