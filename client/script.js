@@ -184,12 +184,15 @@ async function getChannelData() {
             onclick="changeActiveChannel('${element.Name}');"
             class="${element.Name == currentChannel ? "activeButton" : ""}">
             <p>${element.Name}</p>
-            <div class="channelEditButtons">`
+            `
             +
-            (adminPowers ? `<button onclick="event.stopPropagation(); channelEdit('${element.Name}', '${element.Id}');">Edit</button>
-            <button onclick="event.stopPropagation(); channelDelete('${element.Name}', '${element.Id}');">X</button>` : "")
+            (adminPowers ? 
+            `<div class="channelEditButtons">
+              <button onclick="event.stopPropagation(); channelEdit('${element.Name}', '${element.Id}');">Edit</button>
+              <button onclick="event.stopPropagation(); channelDelete('${element.Name}', '${element.Id}');">X</button>
+            </div>` : "")
             +
-            `</div>
+            `
             </div>
             `
             channelJsonData.push(element);
