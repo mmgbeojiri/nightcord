@@ -2,10 +2,12 @@ const messageInput = document.getElementById("messageInput");
 let editing = false;
 let editing_id = "";
 let link = "https://humble-space-disco-pjj7vvrw9j5r26v5r-8500.app.github.dev";
-
+const nameInput = document.getElementById("nameInput")
 const lukasMode = false;
 let currentChannel = "Tweets";
 const autoFetch = true; // If this value is false, the service doesnt auto fetch messages. useful for checking console on frontend only days when too many 404 errors.
+
+let adminPowers = false;
 
 let storedDarkMode = window.localStorage.getItem("darkMode");
 let darkMode = storedDarkMode === "true";
@@ -26,6 +28,11 @@ function setDarkMode(value) {
 
 if (lukasMode) {
   document.getElementById("messageInput").placeholder = "Lukas Mode is on. No changes will be sent, edited, or deleted."
+}
+
+function resetLink() {
+  link = "https://humble-space-disco-pjj7vvrw9j5r26v5r-8500.app.github.dev";
+  alert(`Link reset to: ${link}`);
 }
 
 function toggleEditing(bool) { // Toggles The Editing State
@@ -75,9 +82,11 @@ document.addEventListener('click', (event) => {
 const normalize = (str) => str.replace(/\s+/g, '')
 let htmlCode = "";
 let jsonData = [];
+let lastName = nameInput.value;
 
 async function getData() { // Function to get messages 
   let lastJsonData = jsonData;
+  let currentName = nameInput.value;
   jsonData = [];
   htmlCode = ""
 
@@ -93,14 +102,19 @@ async function getData() { // Function to get messages
         htmlCode = `<h1>${currentChannel}</h1>`;
         data.forEach(element => {
           if (element.Channel == currentChannel) {
+
             htmlCode = `
             <div class="message" id="message_${element.Id}">
               <div class="messageHeader">
                 <h1>${element.Name}</h1>
                 <div class="buttonContainer">
                 <button onclick="copyData('${element.Message}')">Copy</button>
-                <button onclick="populateData('${element.Id}')">Edit</button>
-                <button onclick="deleteData('${element.Id}', '${element.Message}')">Delete</button>
+                `
+                +
+                (element.Name == nameInput.value ? `<button onclick="populateData('${element.Id}')">Edit</button>
+                <button onclick="deleteData('${element.Id}', '${element.Message}')">Delete</button>`: "")
+                +
+                `
                 </div>
               </div>
               <div class="messageContent">
@@ -126,10 +140,11 @@ async function getData() { // Function to get messages
           //console.log(typeof lastHTML, typeof htmlCode);
         }*/
 
-        if (JSON.stringify(jsonData) != JSON.stringify(lastJsonData)) { // Only update the HTML if the data has changed
-          console.log("Data is DIFFERENT. changing.");
+        if (JSON.stringify(jsonData) != JSON.stringify(lastJsonData) || currentName !== lastName) { // Only update the HTML if the data or current user name has changed
+          console.log("Data or name is DIFFERENT. changing.");
           jsonContainer.innerHTML = htmlCode;
         }
+        lastName = currentName;
        
       });
   } catch {
