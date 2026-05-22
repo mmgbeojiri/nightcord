@@ -15,6 +15,7 @@ setDarkMode(darkMode);
 
 let storedAdminPowers = window.localStorage.getItem("adminPowers");
 let adminPowers = storedAdminPowers === "true";
+setAdminPowers(adminPowers);
 
 function setDarkMode(value) {
   darkMode = value;
@@ -92,10 +93,13 @@ const normalize = (str) => str.replace(/\s+/g, '')
 let htmlCode = "";
 let jsonData = [];
 let lastName = nameInput.value;
+let lastAdminPower = adminPowers;
+let lastChannelAdminPower = adminPowers;
 
 async function getData() { // Function to get messages 
   let lastJsonData = jsonData;
   let currentName = nameInput.value;
+  let currentAdminPowers = adminPowers;
   jsonData = [];
   htmlCode = ""
 
@@ -138,23 +142,15 @@ async function getData() { // Function to get messages
           }
         });
       }).finally(() => {
-        //console.log("Fetch Completed.");
 
 
-
-        /*if (normalize(jsonContainer.innerHTML) != normalize(htmlCode)) { // Only update the HTML if it has changed
-          //console.log("Html is DIFFERENT. changing.");
-          jsonContainer.innerHTML = htmlCode;
-
-          //console.log(typeof lastHTML, typeof htmlCode);
-        }*/
-
-        if (JSON.stringify(jsonData) != JSON.stringify(lastJsonData) || currentName !== lastName) { // Only update the HTML if the data or current user name has changed
+        if (JSON.stringify(jsonData) != JSON.stringify(lastJsonData) || currentName !== lastName || currentAdminPowers !== lastAdminPower) { // Only update the HTML if the data or current user name has changed
           console.log("Data or name is DIFFERENT. changing.");
           jsonContainer.innerHTML = htmlCode;
         }
         lastName = currentName;
-       
+        lastAdminPower = currentAdminPowers;
+        
       });
   } catch {
     response = "Server Returned 500."
@@ -174,6 +170,7 @@ async function getChannelData() {
   channelHTMLCode = ""
   let lastChannelJsonData = channelJsonData;
   channelJsonData = [];
+  let currentAdminPowers = adminPowers;
 
 
   try {
@@ -202,7 +199,7 @@ async function getChannelData() {
 
 
 
-        if (JSON.stringify(lastChannelJsonData) != JSON.stringify(channelJsonData)) { // Only update the HTML if it has changed
+        if ( (JSON.stringify(lastChannelJsonData) != JSON.stringify(channelJsonData) ) || currentAdminPowers !== lastChannelAdminPower) { // Only update the HTML if it has changed
           //We use a normaizlization function to ignore whitespace
           console.log("json for channels is DIFFERENT. changing.");
 
@@ -210,6 +207,7 @@ async function getChannelData() {
           
 
         } 
+        lastChannelAdminPower = currentAdminPowers;
       });
   } catch {
     response = "Server Returned 500."
