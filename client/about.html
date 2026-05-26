@@ -2,7 +2,7 @@
     <head>
         <title>Nightcord - About</title>
     </head>
-    <link rel="stylesheet" href="styles.css"/>
+    <link rel="stylesheet" href="about.css"/>
     <body>
         <div id="header">
   <h1>Nightcord</h1>
@@ -12,46 +12,54 @@
     ">
   <svg
   width="30" height="30" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-  <title>ionicons-v5-q</title>
+  <title>Settings</title>
   <path d="M262.29,192.31a64,64,0,1,0,57.4,57.4A64.13,64.13,0,0,0,262.29,192.31ZM416.39,256a154.34,154.34,0,0,1-1.53,20.79l45.21,35.46A10.81,10.81,0,0,1,462.52,326l-42.77,74a10.81,10.81,0,0,1-13.14,4.59l-44.9-18.08a16.11,16.11,0,0,0-15.17,1.75A164.48,164.48,0,0,1,325,400.8a15.94,15.94,0,0,0-8.82,12.14l-6.73,47.89A11.08,11.08,0,0,1,298.77,470H213.23a11.11,11.11,0,0,1-10.69-8.87l-6.72-47.82a16.07,16.07,0,0,0-9-12.22,155.3,155.3,0,0,1-21.46-12.57,16,16,0,0,0-15.11-1.71l-44.89,18.07a10.81,10.81,0,0,1-13.14-4.58l-42.77-74a10.8,10.8,0,0,1,2.45-13.75l38.21-30a16.05,16.05,0,0,0,6-14.08c-.36-4.17-.58-8.33-.58-12.5s.21-8.27.58-12.35a16,16,0,0,0-6.07-13.94l-38.19-30A10.81,10.81,0,0,1,49.48,186l42.77-74a10.81,10.81,0,0,1,13.14-4.59l44.9,18.08a16.11,16.11,0,0,0,15.17-1.75A164.48,164.48,0,0,1,187,111.2a15.94,15.94,0,0,0,8.82-12.14l6.73-47.89A11.08,11.08,0,0,1,213.23,42h85.54a11.11,11.11,0,0,1,10.69,8.87l6.72,47.82a16.07,16.07,0,0,0,9,12.22,155.3,155.3,0,0,1,21.46,12.57,16,16,0,0,0,15.11,1.71l44.89-18.07a10.81,10.81,0,0,1,13.14,4.58l42.77,74a10.8,10.8,0,0,1-2.45,13.75l-38.21,30a16.05,16.05,0,0,0-6.05,14.08C416.17,247.67,416.39,251.83,416.39,256Z" style="fill:none;stroke: var(--color-slate-500); pointer-events: none; stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/>
   </svg>
   </div>
 
   <div id="myDropdown" class="dropdown-content hidden">
     <button id="darkModeButton" onclick="setDarkMode(!darkMode)">Dark Mode: Off</button>
-    <button id="adminModeButton" onclick="setAdminPowers(!adminPowers)">Admin Mode: Off</button>
-    <button>Change Server Link</button>
-    <button onclick="resetLink()">Reset Server Link</button>
+    <button onclick="window.location.href='./index.html'">Home</button>
   </div>
   </div>
   <!-- <button onClick = getData()>Click Here To Fetch Data</button> -->
 </div>
-        <div>
-            <p># Nightcord
+        <main>
+            <h1>Nightcord</h1>
+            <p>
 Nightcord is a visualization of a database of a social messaging site where people send messages to the server.
 Nightcord was based off of the CRUD server management and able to support countless features.
-Features include:
+</p>
+<hr/>
+<h2>Features include:</h2>
+<ul>
+<li>Automatic fetching of messages</li>
+<li>Sending messages to the server</li>
+<li>Autoincrementing internal ID's in the backend</li>
+<li>The editing of messages</li>
+<li>No sign-up: complete anomymity.</li>
+<li>Creating, Reading, Updating, and Deleting Channels.</li>
+<li>Copy messages.</li>
+<li>Responsive Design</li>
+<li>Security against SQL Injection</li>
+<li>Dark Mode</li>
+<li>Permission to edit your own messages</li>
+<li>Changing of Backend API endpoint</li>
+<li>Usage of localStorage</li>
+<li>About Page</li>
+</ul>
+<hr/>
 
-+ Automatic fetching of messages
-+ Sending messages to the server
-+ Autoincrementing internal ID's in the backend
-+ The editing of messages
-+ No sign-up: complete anomymity.
-+ Creating, Reading, Updating, and Deleting Channels.
-+ Copy messages.
-+ Responsive Design
-+ Security against SQL Injection
-+ Dark Mode
-+ Permission to edit your own messages
 
+<p>You can use the channels on the left side of the website to filter the channels between </p>
 
-
-
-To build, run ``chmod +x ./run_it.sh`` in the ``./server`` directory once, then write ``./run_it.sh`` for every subsequent running.
-The HTML expects the server to be at "https://humble-space-disco-pjj7vvrw9j5r26v5r-8500.app.github.dev", you can edit line 4 of script.js to change whatever is serving your server.
-If you are running this on your own computer, it might be at http://localhost:8500.
+<h2>Build</h2>
+<p>To build, run <span>chmod +x ./run_it.sh</span> in the <span>./server</span> directory once, then write <span>./run_it.sh</span> for every subsequent running.
+The HTML expects the server to be at <span>https://humble-space-disco-pjj7vvrw9j5r26v5r-8500.app.github.dev"</span> you can edit line 4 of script.js to change whatever is serving your server.
+If you are running this on your own computer, it might be at <span>http://localhost:8500</span>.</p>
 
 </p>
-        </div>
+</main>
+<script src="darkmode.js"></script>
     </body>
 </html>

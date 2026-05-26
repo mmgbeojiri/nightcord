@@ -1,0 +1,68 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+@theme {
+  /* ... */
+}
+
+* {
+  @apply duration-100 box-border
+}
+
+#header {
+  @apply dark:bg-slate-800 bg-slate-50 flex flex-row items-center border-b-2 border-slate-200 dark:border-slate-700 h-[10vh] justify-between px-5;
+}
+
+#header h1 {
+ @apply dark:text-slate-400 dark:hover:bg-slate-900 dark:hover:text-slate-300 text-xl font-bold p-2 text-slate-500 hover:bg-white hover:text-slate-400 rounded-xl;
+}
+#settings #myDropdown {
+  @apply absolute right-5 z-10 mt-2 w-48 rounded-lg border border-slate-100 dark:border-slate-700 bg-white dark:bg-slate-800 text-left text-sm shadow-lg p-1;
+}
+
+#svgButton {
+  @apply text-xl font-bold p-2 text-slate-500 hover:bg-white dark:hover:bg-slate-900 hover:text-slate-400 rounded-xl active:bg-white;
+}
+
+#myDropdown button {
+  @apply flex w-full items-center rounded-md px-3 py-2 text-slate-700 hover:bg-slate-100 dark:bg-slate-800 bg-white border-none font-medium dark:hover:bg-slate-700 dark:text-slate-400;
+}
+
+#svgButton.active {
+  @apply bg-white dark:bg-slate-900;
+}
+
+.hidden {
+  @apply hidden;
+}
+
+main {
+  @apply bg-slate-50 text-slate-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-500
+}
+
+main h1 {
+  @apply text-4xl p-5  border-2 rounded-xl  border-slate-300 font-bold bg-slate-100 text-slate-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-500
+}
+main hr{
+  @apply border-slate-300 dark:border-slate-700 border-1 rounded mb-2
+}
+ main span {
+   @apply bg-slate-100 dark:bg-slate-800 px-1 rounded border-1 border-slate-300 font-bold text-slate-500
+ }
+main h2 {
+    @apply text-2xl px-5 py-2  border-2 rounded-xl  border-slate-300 font-bold bg-slate-100 text-slate-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-500
+}
+main p {
+  @apply py-2
+}
+
+main ul {
+  @apply bg-slate-100 rounded-xl border-2 border-slate-300 my-1 text-slate-700 dark:bg-slate-700 dark:text-slate-500 p-2
+}
+
+main li {
+  @apply list-disc mx-5  rounded p-1 hover:bg-slate-50 hover:font-bold text-left hover:shadow
+}
+
+main {
+  @apply flex flex-col p-5
+}
