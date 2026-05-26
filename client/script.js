@@ -49,6 +49,9 @@ if (lukasMode) {
   document.getElementById("messageInput").placeholder = "Lukas Mode is on. No changes will be sent, edited, or deleted."
 }
 
+function getLink() {
+  alert(`Server endpoint is: "${link}"`)
+}
 function changeLink() {
   let answer = prompt("Change the server endpoint to:");
   setLink(answer);

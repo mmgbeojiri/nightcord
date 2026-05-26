@@ -339,6 +339,14 @@
     }
   }
 }
+#myDropdown hr {
+  margin-inline: calc(var(--spacing) * 2);
+  border-color: var(--color-slate-300);
+  padding-block: calc(var(--spacing) * 0);
+  &:where(.dark, .dark *) {
+    border-color: var(--color-slate-700);
+  }
+}
 #svgButton.active {
   background-color: var(--color-white);
   &:where(.dark, .dark *) {
