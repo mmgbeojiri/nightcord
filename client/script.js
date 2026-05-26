@@ -1,7 +1,8 @@
 const messageInput = document.getElementById("messageInput");
 let editing = false;
 let editing_id = "";
-let link = "https://humble-space-disco-pjj7vvrw9j5r26v5r-8500.app.github.dev";
+const defaultLink = "https://humble-space-disco-pjj7vvrw9j5r26v5r-8500.app.github.dev";
+let link = "";
 const nameInput = document.getElementById("nameInput")
 const lukasMode = false;
 let currentChannel = "Tweets";
@@ -16,6 +17,14 @@ setDarkMode(darkMode);
 let storedAdminPowers = window.localStorage.getItem("adminPowers");
 let adminPowers = storedAdminPowers === "true";
 setAdminPowers(adminPowers);
+
+let storedServerLink = window.localStorage.getItem("serverLink");
+if (storedServerLink) {
+  link = storedServerLink;
+}
+else {
+  link = defaultLink;
+}
 
 function setDarkMode(value) {
   darkMode = value;
@@ -40,8 +49,20 @@ if (lukasMode) {
   document.getElementById("messageInput").placeholder = "Lukas Mode is on. No changes will be sent, edited, or deleted."
 }
 
+function changeLink() {
+  let answer = prompt("Change the server endpoint to:");
+  setLink(answer);
+  alert(`Server endpoint set to: "${link}", it can be reset to the default by clicking the Reset Link button in settings.`)
+}
+
+function setLink(value) {
+  link = value;
+  window.localStorage.setItem("serverLink", value);
+}
+
 function resetLink() {
-  link = "https://humble-space-disco-pjj7vvrw9j5r26v5r-8500.app.github.dev";
+  link = defaultLink;
+  window.localStorage.setItem("serverLink", link);
   alert(`Link reset to: ${link}`);
 }
 
