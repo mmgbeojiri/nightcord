@@ -21,6 +21,10 @@ Features include:
 To build, run ``chmod +x ./run_it.sh`` in the ``./server`` directory once, then write ``./run_it.sh`` for every subsequent running.
 The HTML expects the server to be at "https://humble-space-disco-pjj7vvrw9j5r26v5r-8500.app.github.dev", you can edit line 4 of script.js to change whatever is serving your server.
 If you are running this on your own computer, it might be at http://localhost:8500.
-
+To recieve a more updated version of this, go to the about page of Nightcord by clicking the settings.
 # Images
 ![alt text](image.png)
+![alt text](image-1.png)
+![alt text](image-2.png)
+![alt text](image-3.png)
+![alt text](image-4.png)
