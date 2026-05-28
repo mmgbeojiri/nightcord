@@ -179,6 +179,7 @@ async function getData() { // Function to get messages
   } catch {
     response = "Server Returned 500."
     console.log("Server Error.")
+    jsonContainer.innerHTML = `<h1>Can't Access Server. Is it on or at the correct endpoint?</h1>`;
     return
   }
 
