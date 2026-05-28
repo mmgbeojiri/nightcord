@@ -73,7 +73,7 @@ function toggleEditing(bool) { // Toggles The Editing State
   editing = bool;
   let editingNote = document.getElementById("editing");
 
-  activeElement = document.getElementById(editing_id);
+  activeElement = document.getElementById(`message_${editing_id}`);
   if (editing) {
     editingNote.style.display = "block";
     activeElement.classList.add("active");
@@ -273,7 +273,7 @@ async function sendData() { // Function to send and edit messages
     data = {
       "Name": name,
       "Message": message,
-      "Timestamp": new Date(document.getElementById(editing_id).querySelector("span").innerText).toISOString(),
+      "Timestamp": new Date(document.getElementById(`message_${editing_id}`).querySelector("span").innerText).toISOString(),
       "Id": editing_id,
     }
 
