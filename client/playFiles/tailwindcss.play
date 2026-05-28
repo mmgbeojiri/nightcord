@@ -28,7 +28,7 @@
 }
 
 #myDropdown hr {
-  @apply dark:border-slate-700 mx-2 py-0 border-slate-300
+  @apply dark:border-slate-700 mx-2 !my-0 !py-0 border-slate-300
 }
 #svgButton.active {
   @apply bg-white dark:bg-slate-900;

@@ -341,8 +341,9 @@
 }
 #myDropdown hr {
   margin-inline: calc(var(--spacing) * 2);
+  margin-block: calc(var(--spacing) * 0)!important;
   border-color: var(--color-slate-300);
-  padding-block: calc(var(--spacing) * 0);
+  padding-block: calc(var(--spacing) * 0)!important;
   &:where(.dark, .dark *) {
     border-color: var(--color-slate-700);
   }

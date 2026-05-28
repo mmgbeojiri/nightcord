@@ -148,7 +148,7 @@ async function getData() { // Function to get messages
                 <button onclick="copyData('${element.Message}')">Copy</button>
                 `
                 +
-                (element.Name == nameInput.value || adminPowers ? `<button onclick="populateData('message_${element.Id}')">Edit</button>
+                (element.Name == nameInput.value || adminPowers ? `<button onclick="populateData('${element.Id}')">Edit</button>
                 <button onclick="deleteData('${element.Id}', '${element.Message}')">Delete</button>`: "")
                 +
                 `
@@ -267,7 +267,8 @@ async function sendData() { // Function to send and edit messages
   };
 
   messageInput.value = "";
-
+  console.log(`message editing: ${editing}`)
+  console.log(`editing message with id: ${editing_id}`)
   if (editing) { // PUT REQUEST
     data = {
       "Name": name,
@@ -463,8 +464,7 @@ function populateData(id) { // Function to populate the input fields with the me
   if (lukasMode) {
     return;
   }
-  message = document.getElementById(id);
-  console.log(`message id: ${id}`)
+  message = document.getElementById(`message_${id}`);
   message_name = message.querySelector("h1").innerText;
   message_text = message.querySelector("p").innerText;
 

@@ -13,6 +13,7 @@
     --color-slate-300: oklch(86.9% 0.022 252.894);
     --color-slate-400: oklch(70.4% 0.04 256.788);
     --color-slate-500: oklch(55.4% 0.046 257.417);
+    --color-slate-600: oklch(44.6% 0.043 257.281);
     --color-slate-700: oklch(37.2% 0.044 257.287);
     --color-slate-800: oklch(27.9% 0.041 260.031);
     --color-slate-900: oklch(20.8% 0.042 265.755);
@@ -434,18 +435,21 @@ main ul {
   border-color: var(--color-slate-300);
   background-color: var(--color-slate-100);
   padding: calc(var(--spacing) * 2);
-  color: var(--color-slate-700);
+  color: var(--color-slate-500);
   &:where(.dark, .dark *) {
-    background-color: var(--color-slate-700);
+    border-color: var(--color-slate-700);
   }
   &:where(.dark, .dark *) {
-    color: var(--color-slate-500);
+    background-color: var(--color-slate-600);
+  }
+  &:where(.dark, .dark *) {
+    color: var(--color-slate-400);
   }
 }
 main li {
   margin-inline: calc(var(--spacing) * 5);
   list-style-type: disc;
-  border-radius: 0.25rem;
+  border-radius: var(--radius-xl);
   padding: calc(var(--spacing) * 1);
   text-align: left;
   &:hover {
@@ -455,14 +459,20 @@ main li {
   }
   &:hover {
     @media (hover: hover) {
-      --tw-font-weight: var(--font-weight-bold);
-      font-weight: var(--font-weight-bold);
+      padding-inline: calc(var(--spacing) * 5);
     }
   }
   &:hover {
     @media (hover: hover) {
-      --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
-      box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+      --tw-font-weight: var(--font-weight-bold);
+      font-weight: var(--font-weight-bold);
+    }
+  }
+  &:where(.dark, .dark *) {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-slate-500);
+      }
     }
   }
 }
@@ -470,6 +480,23 @@ main {
   display: flex;
   flex-direction: column;
   padding: calc(var(--spacing) * 5);
+}
+#imageContainer {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: calc(var(--spacing) * 1);
+  padding-block: calc(var(--spacing) * 1);
+}
+img {
+  width: 100%;
+  border-radius: var(--radius-xl);
+  border-style: var(--tw-border-style);
+  border-width: 2px;
+  border-color: var(--color-slate-300);
+  &:where(.dark, .dark *) {
+    border-color: var(--color-slate-700);
+  }
 }
 @property --tw-duration {
   syntax: "*";
