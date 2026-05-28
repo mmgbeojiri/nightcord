@@ -418,7 +418,8 @@ async function channelDelete(name, id) {
     console.error("Error: ", error); // Handles network errors or the error thrown above
   }
 
-  //getChannelData();
+  //
+getChannelData();
   if (currentChannel == name) {
     changeActiveChannel("Tweets"); // if the user deletes the channel they are in, move them to the default channel.
   }
