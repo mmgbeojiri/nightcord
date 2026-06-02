@@ -54,21 +54,31 @@ Nightcord was based off of the CRUD server management and able to support countl
 <hr/>
 
 
-<p>You can use the channels on the left side of the website to filter the channels between </p>
+<p>You can use the channels on the left side of the website to filter the messages by the channel they are in. </p>
+<h2>Settings</h2>
+<p>Dark Mode is a feature that is browser persistent. It enables dark mode for the entire application.</p>
+<p>Admin Mode is a feature that allows users to edit, and delete any message, even if they never sent it.</p>
+<p>Admin mode is turned off by default but can be turned on.</p>
+
+
 
 <h2>Build</h2>
 <p>To build, run <span>chmod +x ./run_it.sh</span> in the <span>./server</span> directory once, then write <span>./run_it.sh</span> for every subsequent running.
-The HTML expects the server to be at <span>https://humble-space-disco-pjj7vvrw9j5r26v5r-8500.app.github.dev"</span> you can edit line 4 of script.js to change whatever is serving your server.
-If you are running this on your own computer, it might be at <span>http://localhost:8500</span>.</p>
+The HTML expects the server to be at <span>https://humble-space-disco-pjj7vvrw9j5r26v5r-8500.app.github.dev"</span> You can check, and update the server endpoint in the settings menu.
+If you are running this on your own computer, it might be at <span>http://localhost:8500</span>. If you mess up, you can reset by clicking Reset Server Link</p>
 
-</p>
+<h2>Internal</h2>
+<p>Inside of the <span>./playFiles</span> directory, there are a lot of files that were used to test out css styling. It is recommended to paste these files into <a href="https://play.tailwindcss.com/" target="_blank">Tailwind Play</a> to get a better preview.</p>
+<p>The site is coded in vanilla HTML with Tailwind CSS and javascript. The backend is built with Java and a SQL database. All messages and channel data is stored in ``twitter.db``.</p>
+
+
 <h2>Images</h2>
 <div id="imageContainer">
-<img src="../image.png" />
-<img src="../image-1.png" />
-<img src="../image-2.png" />
-<img src="../image-3.png" />
-<img src="../image-4.png" />
+<img src="./image.png" />
+<img src="./image-1.png" />
+<img src="./image-2.png" />
+<img src="./image-3.png" />
+<img src="./image-4.png" />
 </div>
 </main>
 <script src="darkmode.js"></script>
